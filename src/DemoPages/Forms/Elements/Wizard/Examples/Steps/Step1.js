@@ -7,7 +7,7 @@ import cintas from "../../../../../../controllers/cintas";
 
 
 
-const WizardStep1 =({cintas,orden})=>{
+const WizardStep1 =({orden})=>{
  
   return (
     <Fragment>
@@ -25,8 +25,7 @@ const WizardStep1 =({cintas,orden})=>{
 
 
 const mapStateToProps = (state) => ({
-   orden:state.reducerCinta.cintasOrdenadas,
-   cintas: state.reducerCinta.cintas
+   orden:state.reducerCinta.cinta,
 })
 
 const mapDispatchToProps = (dispatch) => ({})

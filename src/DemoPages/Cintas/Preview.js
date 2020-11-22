@@ -2,15 +2,17 @@ import React from 'react'
 import { Button, Col, Row, Table } from "reactstrap"
 import { connect } from 'react-redux'
 
-const Preview = ({ patronCintas }) => {
+const Preview = ({ cinta }) => {
+ 
   let params = []
 
   let contenido = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
 
-  let tamanio = patronCintas.length;
+  let tamanio = cinta.length;
+
   for (let i = 0; i < tamanio; i++) {
-    contenido[i] = patronCintas[i]
-    contenido[i + 10] = patronCintas[i]
+    contenido[i] = cinta[i]
+    contenido[i + 10] = cinta[i]
   }
 
   for (let i = 1; i <= 10; i++) {
@@ -39,7 +41,7 @@ const Preview = ({ patronCintas }) => {
         filas[j] = contenido[i + 9]
       }
       else {
-        filas[j] = {position:0,params:{id:0,color:"",codigo:""}}
+        filas[j] = {}
       }
 
 
@@ -50,7 +52,7 @@ const Preview = ({ patronCintas }) => {
 
     params[i] = filas
 
-
+    console.log(params)
   }
 
   
@@ -118,8 +120,8 @@ const Preview = ({ patronCintas }) => {
                   if (i < 7) {
                     return <td key={i}>{JSON.stringify(campo)}</td>
                   } else if (i == 7) {
-                    if (campo.params) {
-                    return <td key={i} style={{ background: campo.params.codigo }}>{campo.params.color}</td>
+                    if (campo) {
+                    return <td key={i} style={{ background: campo.codigo }}>{campo.color}</td>
                     } else return <td key={i}></td>
                   } else if(i==8){
                     let arrayColors=[];
@@ -137,7 +139,7 @@ const Preview = ({ patronCintas }) => {
                     return(
                       <React.Fragment key={i}>
                       {arrayColors.map((item,i)=>{
-                        if(item.params) return(<td key={i} style={{background:item.params.codigo}}> </td>)
+                        if(item) return(<td key={i} style={{background:item.codigo}}> </td>)
                         else return(<td key={i} > </td>)
                       })}
                     </React.Fragment>
@@ -167,7 +169,7 @@ const Preview = ({ patronCintas }) => {
 }
 
 const mapStateToProps = (state) => ({
-  patronCintas: state.reducerCinta.patronCintas,
+  cinta: state.reducerCinta.cinta,
   cintas: state.reducerCinta.cintas
 })
 

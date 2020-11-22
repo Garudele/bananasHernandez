@@ -12,6 +12,7 @@ import {
   Input,
   FormText,
   Container,
+  ButtonToggle,
 } from "reactstrap";
 
 export default class FormGrid extends React.Component {
@@ -23,102 +24,45 @@ export default class FormGrid extends React.Component {
           <Container fluid>
             <Card className="main-card mb-3">
               <CardBody>
-                <CardTitle>Grid</CardTitle>
-                <Form>
-                  <FormGroup row>
-                    <Label for="exampleEmail" sm={2}>
-                      Email
-                    </Label>
-                    <Col sm={10}>
-                      <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder"/>
-                    </Col>
-                  </FormGroup>
-                  <FormGroup row>
-                    <Label for="examplePassword" sm={2}>
-                      Password
-                    </Label>
-                    <Col sm={10}>
-                      <Input type="password" name="password" id="examplePassword" placeholder="password placeholder"/>
-                    </Col>
-                  </FormGroup>
-                  <FormGroup row>
+                <CardTitle>Registro de plantaciones</CardTitle>
+                <Form>    
+                <FormGroup row>
                     <Label for="exampleSelect" sm={2}>
-                      Select
+                     Finca
                     </Label>
-                    <Col sm={10}>
+                    <Col sm={4}>
                       <Input type="select" name="select" id="exampleSelect" />
                     </Col>
-                  </FormGroup>
-                  <FormGroup row>
-                    <Label for="exampleSelectMulti" sm={2}>
-                      Select Multiple
+                    <Label for="examplePassword" sm={2}>
+                     Numero de semana
                     </Label>
-                    <Col sm={10}>
-                      <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple/>
+                    <Col sm={2}>
+                      <Input type="password" name="password" id="examplePassword" placeholder="48"/>
                     </Col>
-                  </FormGroup>
-                  <FormGroup row>
-                    <Label for="exampleText" sm={2}>
-                      Text Area
+                  </FormGroup> 
+                  <hr></hr>
+                  
+                  <CardTitle>Plantación de bananos</CardTitle>
+                  <FormGroup row>             
+                                       
+                    <Label for="examplePassword" sm={2}>
+                     Cantidad 
                     </Label>
-                    <Col sm={10}>
-                      <Input type="textarea" name="text" id="exampleText" />
+                    <Col sm={3}>
+                      <Input type="password" name="password" id="examplePassword" placeholder=""/>
                     </Col>
-                  </FormGroup>
-                  <FormGroup row>
-                    <Label for="exampleFile" sm={2}>
-                      File
+
+                    <Label for="examplePassword" sm={3}>
+                     Color de cinta correspondiente
                     </Label>
-                    <Col sm={10}>
-                      <Input type="file" name="file" id="exampleFile" />
-                      <FormText color="muted">
-                        This is some placeholder block-level help text for the
-                        above input. It's a bit lighter and easily wraps to a
-                        new line.
-                      </FormText>
+                    <Col sm={2}>
+                      <Input style={ {background:'red' } } type="password" name="password" id="examplePassword" placeholder=""/>
                     </Col>
-                  </FormGroup>
-                  <FormGroup tag="fieldset" row>
-                    <legend className="col-form-label col-sm-2">
-                      Radio Buttons
-                    </legend>
-                    <Col sm={10}>
-                      <FormGroup check>
-                        <Label check>
-                          <Input type="radio" name="radio2" /> Option one is
-                          this and that—be sure to include why it's great
-                        </Label>
-                      </FormGroup>
-                      <FormGroup check>
-                        <Label check>
-                          <Input type="radio" name="radio2" /> Option two can be
-                          something else and selecting it will deselect option
-                          one
-                        </Label>
-                      </FormGroup>
-                      <FormGroup check disabled>
-                        <Label check>
-                          <Input type="radio" name="radio2" disabled /> Option
-                          three is disabled
-                        </Label>
-                      </FormGroup>
-                    </Col>
-                  </FormGroup>
-                  <FormGroup row>
-                    <Label for="checkbox2" sm={2}>
-                      Checkbox
-                    </Label>
-                    <Col sm={{ size: 10 }}>
-                      <FormGroup check>
-                        <Label check>
-                          <Input type="checkbox" id="checkbox2" /> Check me out
-                        </Label>
-                      </FormGroup>
-                    </Col>
-                  </FormGroup>
+                  </FormGroup>                  
                   <FormGroup check row>
-                    <Col sm={{ size: 10, offset: 2 }}>
-                      <Button>Submit</Button>
+                    <Col sm={{ size: 14, offset:10 }}>
+                    <ButtonToggle color="info">Guardar</ButtonToggle> 
+                    <ButtonToggle className="ml-3" color="danger">Salir</ButtonToggle>
                     </Col>
                   </FormGroup>
                 </Form>

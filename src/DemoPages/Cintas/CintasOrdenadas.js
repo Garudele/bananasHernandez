@@ -4,26 +4,24 @@ import { connect } from 'react-redux'
 
 const x=7;
 const z=5;
-const CintasOrdenadas = ({ cintasOrdenadas, regresarCinta, limpiar,cintas}) => (
+const CintasOrdenadas = ({  limpiar,cinta}) => (
   <div>
     <h1>Cintas Ordenadas</h1>
 
     
     <Row>
-      {cintasOrdenadas.map((cinta) => (
+      {cinta.map((cinta) => (
         <Col md={1} key={cinta.id} className='p-0'>
           
           {cinta.color === 'Blanca'? (
             <Button
               className="btn-sm btn-block"
-              onClick={() => regresarCinta(cinta)}
               style={{ background: cinta.codigo, color: 'black', border: '2px solid black', height:30}}>
              
             </Button>
           ) : cinta.color === 'Amarilla' ? (
             <Button
             className="btn-sm btn-block"
-            onClick={() => regresarCinta(cinta)}
             style={{ background: cinta.codigo, color: 'black', border: '2px solid black', height:30}}>
            
           </Button>
@@ -31,7 +29,6 @@ const CintasOrdenadas = ({ cintasOrdenadas, regresarCinta, limpiar,cintas}) => (
           : (
             <Button
               className="btn-sm btn-block"
-              onClick={() => regresarCinta(cinta)}
               style={{ background: cinta.codigo, border: `2px solid black`, height:30}}>
              
             </Button>
@@ -44,7 +41,7 @@ const CintasOrdenadas = ({ cintasOrdenadas, regresarCinta, limpiar,cintas}) => (
       ))}
 
       <Col> <Col> { <Button    className="btn-sm " 
-            onClick={() => limpiar(cintasOrdenadas)} >Limpiar orden</Button>}</Col></Col>
+            onClick={() => limpiar(cinta)} >Limpiar orden</Button>}</Col></Col>
          
       
     </Row>
@@ -60,17 +57,10 @@ const CintasOrdenadas = ({ cintasOrdenadas, regresarCinta, limpiar,cintas}) => (
 )
 
 const mapStateToProps = (state) => ({
-  cintasOrdenadas: state.reducerCinta.cintasOrdenadas, 
-  cintas:state.reducerCinta.cintas
+  cinta: state.reducerCinta.cinta,
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  regresarCinta(cinta) {
-    dispatch({
-      type: 'REGRESAR_CINTA',
-      cinta
-    })
-  },
+const mapDispatchToProps = (dispatch) => ({ 
 
   limpiar(cintas){
     dispatch({
