@@ -2,15 +2,34 @@ import React, { Fragment } from "react";
 import { Row, Col, FormGroup, Label, Input } from "reactstrap";
 import Cintas from '../../../../../Cintas/Cintas';
 import CintasOrdenadas from '../../../../../Cintas/CintasOrdenadas';
-export default class WizardStep1 extends React.Component {
-  render() {
-    return (
-      <Fragment>
+import { connect } from 'react-redux';
+import cintas from "../../../../../../controllers/cintas";
+
+
+
+const WizardStep1 =({cintas,orden})=>{
+ 
+  return (
+    <Fragment>
         <div className="form-wizard-content">
-          <Cintas/>
-          <CintasOrdenadas/>
-        </div>
-      </Fragment>
-    );
-  }
+                {orden.length ===10  ? (
+                 <CintasOrdenadas/>
+                ):(<Cintas/>)
+
+                }     
+     
+      </div>
+    </Fragment>
+  );
 }
+
+
+const mapStateToProps = (state) => ({
+   orden:state.reducerCinta.cintasOrdenadas,
+   cintas: state.reducerCinta.cintas
+})
+
+const mapDispatchToProps = (dispatch) => ({})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(WizardStep1)

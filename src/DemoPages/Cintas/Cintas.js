@@ -3,19 +3,19 @@
 import { Button, Col, Row } from "reactstrap";
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import controlCintas from '../../controllers/cintas';
+// import controlCintas from '../../controllers/cintas';
 
-const Cintas = ({ cintas, agregarCinta, getDataInitial }) => {
-  const [data, setData] = useState([])
-  const [res, setRes] = useState(false)
+const Cintas = ({ cintas, agregarCinta }) => {
+//   const [data, setData] = useState([])
+//   const [res, setRes] = useState(false)
 
-  controlCintas.getData().then((respuesta) => {
-    if (!res) {
-      setRes(true)
-      setData(respuesta)
-      getDataInitial(respuesta)
-    }
-  });  
+//   controlCintas.getData().then((respuesta) => {
+//     if (!res) {
+//       setRes(true)
+//       setData(respuesta)
+//       getDataInitial(respuesta)
+//     }
+//   });  
 
   return (
     <div>
@@ -46,7 +46,9 @@ const Cintas = ({ cintas, agregarCinta, getDataInitial }) => {
               </Button>
             )}
           </Col>
+         
         ))}
+  
       </Row>
     </div>
   )
@@ -62,11 +64,12 @@ const mapDispatchToProps = (dispatch) => ({
       cinta
     })
   },
-  getDataInitial(respuesta) {
-    dispatch({
-      type: 'CARGAR',
-      respuesta
-    })
-  }
+  // getDataInitial(respuesta) {
+  //   dispatch({
+  //     type: 'CARGAR',
+  //     respuesta
+  //   })
+  // }
+  
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Cintas)

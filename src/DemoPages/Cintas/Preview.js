@@ -28,7 +28,7 @@ const Preview = ({ patronCintas }) => {
       } 
       
       else if (j > 1 && j < 7) {
-        if (aumento <= 53) {
+        if (aumento <= 52) {
           filas[j] = aumento
           aumento += 10
         } else {
@@ -52,6 +52,7 @@ const Preview = ({ patronCintas }) => {
 
 
   }
+
   
   return (
     <Row>
@@ -166,7 +167,8 @@ const Preview = ({ patronCintas }) => {
 }
 
 const mapStateToProps = (state) => ({
-  patronCintas: state.reducerCinta.patronCintas
+  patronCintas: state.reducerCinta.patronCintas,
+  cintas: state.reducerCinta.cintas
 })
 
 const mapDispatchToProps = (dispatch) => ({})
