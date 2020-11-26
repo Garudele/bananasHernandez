@@ -57,11 +57,17 @@ export default class NavsHGrid extends React.Component {
   render() {
     return (
       <Fragment>
-        <CSSTransitionGroup component="div" transitionName="TabsAnimation" transitionAppear={true}
-          transitionAppearTimeout={0} transitionEnter={false} transitionLeave={false}>
+        <CSSTransitionGroup
+          component="div"
+          transitionName="TabsAnimation"
+          transitionAppear={true}
+          transitionAppearTimeout={0}
+          transitionEnter={false}
+          transitionLeave={false}
+        >
           <Container fluid>
             <Row>
-              <Col xl="6" lg="12">
+              {/* <Col xl="6" lg="12">
                 <Card className="main-card mb-3">
                   <CardBody>
                     <CardTitle>Grid Menu Hover Color</CardTitle>
@@ -179,52 +185,82 @@ export default class NavsHGrid extends React.Component {
                     </div>
                   </CardBody>
                 </Card>
-              </Col>
-              <Col xl="6" lg="12">
+              </Col> */}
+              <Col xl="12" lg="12">
                 <Card className="main-card mb-3">
                   <CardBody>
-                    <CardTitle>Grid Menu Two Columns</CardTitle>
+                    <CardTitle>Cintas</CardTitle>
                     <div className="grid-menu grid-menu-2col">
                       <Row className="no-gutters">
                         <Col sm="6">
                           <Button className="btn-icon-vertical btn-square btn-transition" outline color="primary">
-                            <i className="lnr-license btn-icon-wrapper"> </i>
-                            Primary
+                            <div >
+                              <i className="lnr-calendar-full  btn-icon-wrapper">{" "} </i>
+                            </div>
+                           <div >
+                           Alta de patron de colores
+                           </div>
                           </Button>
                         </Col>
                         <Col sm="6">
-                          <Button className="btn-icon-vertical btn-square btn-transition" outline color="secondary">
-                            <i className="lnr-map btn-icon-wrapper"> </i>
-                            Secondary
+                          <Button
+                            className="btn-icon-vertical btn-square btn-transition"
+                            outline
+                            color="secondary"
+                          >
+                            <div >
+                            <i className="lnr-screen btn-icon-wrapper "> </i>
+                             </div>
+                           <div>
+                           Cargar plantaciones
+                           </div>
                           </Button>
                         </Col>
                         <Col sm="6">
-                          <Button className="btn-icon-vertical btn-square btn-transition" outline color="success">
-                            <i className="lnr-music-note btn-icon-wrapper"> </i>
-                            Success
+                          <Button
+                            className="btn-icon-vertical btn-square btn-transition"
+                            outline
+                            color="success"
+                          >
+                             <div >
+                             <i className="pe-7s-wallet btn-icon-wrapper"> </i>
+                             </div>
+                            Registro de plantaciones
                           </Button>
                         </Col>
                         <Col sm="6">
-                          <Button className="btn-icon-vertical btn-square btn-transition" outline color="info">
-                            <i className="lnr-heart btn-icon-wrapper"> </i>
-                            Info
+                          <Button
+                            className="btn-icon-vertical btn-square btn-transition"
+                            outline
+                            color="info"
+                          >
+                            <div >
+                  <i className="pe-7s-wristwatch btn-icon-wrapper"> {" "}</i>
+                </div>
+                            Monitoreo de plantaciones
                           </Button>
                         </Col>
                       </Row>
                     </div>
-                    <div className="divider" />
+                    {/* <div className="divider" />
                     <div className="text-center">
                       <UncontrolledButtonDropdown>
-                        <DropdownToggle caret className="mb-2 mr-2" color="primary">
+                        <DropdownToggle
+                          caret
+                          className="mb-2 mr-2"
+                          color="primary"
+                        >
                           Grid Menu Inside Dropdown
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-lg">
                           <div className="dropdown-menu-header">
                             <div className="dropdown-menu-header-inner bg-primary">
-                              <div className="menu-header-image"
+                              <div
+                                className="menu-header-image"
                                 style={{
                                   backgroundImage: "url(" + bg1 + ")",
-                                }}/>
+                                }}
+                              />
                               <div className="menu-header-content">
                                 <h5 className="menu-header-title">Settings</h5>
                                 <h6 className="menu-header-subtitle">
@@ -236,27 +272,51 @@ export default class NavsHGrid extends React.Component {
                           <div className="grid-menu grid-menu-2col">
                             <Row className="no-gutters">
                               <Col sm="6">
-                                <Button className="btn-icon-vertical btn-transition" outline color="primary">
-                                  <i className="lnr-license btn-icon-wrapper"> {" "} </i>
-                                  Primary
+                                <Button
+                                  className="btn-icon-vertical btn-transition"
+                                  outline
+                                  color="primary"
+                                >
+                                  <i className="lnr-license btn-icon-wrapper">
+                                    {" "}
+                                  </i>
+                                  Alta de patron de colores
                                 </Button>
                               </Col>
                               <Col sm="6">
-                                <Button className="btn-icon-vertical btn-transition" outline color="secondary">
-                                  <i className="lnr-map btn-icon-wrapper"> </i>
-                                  Secondary
+                                <Button
+                                  className="btn-icon-vertical btn-transition"
+                                  outline
+                                  color="secondary"
+                                >
+                                  <i className="lnr-heart btn-icon-wrapper">
+                                    {" "}
+                                  </i>
+                                  Cargar plantaciones
                                 </Button>
                               </Col>
                               <Col sm="6">
-                                <Button className="btn-icon-vertical btn-transition" outline color="success">
-                                  <i className="lnr-music-note btn-icon-wrapper"> {" "} </i>
-                                  Success
+                                <Button
+                                  className="btn-icon-vertical btn-transition"
+                                  outline
+                                  color="success"
+                                >
+                                  <i className="lnr-heart btn-icon-wrapper">
+                                    {" "}
+                                  </i>
+                                  Registros de plantaciones
                                 </Button>
                               </Col>
                               <Col sm="6">
-                                <Button className="btn-icon-vertical btn-transition" outline color="info">
-                                  <i className="lnr-heart btn-icon-wrapper"> {" "} </i>
-                                  Info
+                                <Button
+                                  className="btn-icon-vertical btn-transition"
+                                  outline
+                                  color="info"
+                                >
+                                  <i className="lnr-heart btn-icon-wrapper">
+                                    {" "}
+                                  </i>
+                                  Monitoreo de plantaciones
                                 </Button>
                               </Col>
                             </Row>
@@ -264,18 +324,22 @@ export default class NavsHGrid extends React.Component {
                           <Nav vertical>
                             <NavItem className="nav-item-divider" />
                             <NavItem className="nav-item-btn text-right">
-                              <Button size="sm" className="btn-pill" color="success">
+                              <Button
+                                size="sm"
+                                className="btn-pill"
+                                color="success"
+                              >
                                 Save
                               </Button>
                             </NavItem>
                           </Nav>
                         </DropdownMenu>
                       </UncontrolledButtonDropdown>
-                    </div>
+                    </div> */}
                   </CardBody>
                 </Card>
               </Col>
-              <Col xl="6" lg="12">
+              {/* <Col xl="6" lg="12">
                 <Card className="main-card mb-3">
                   <CardBody>
                     <CardTitle>Grid Menu Bigger</CardTitle>
@@ -488,9 +552,9 @@ export default class NavsHGrid extends React.Component {
                     </div>
                   </CardBody>
                 </Card>
-              </Col>
+              </Col> */}
             </Row>
-            <Row>
+            {/* <Row>
               <Col md="12">
                 <Card className="main-card mb-3">
                   <CardBody>
@@ -2007,7 +2071,7 @@ export default class NavsHGrid extends React.Component {
                   </CardBody>
                 </Card>
               </Col>
-            </Row>
+            </Row> */}
           </Container>
         </CSSTransitionGroup>
       </Fragment>

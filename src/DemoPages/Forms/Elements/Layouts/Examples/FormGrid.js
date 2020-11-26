@@ -15,22 +15,89 @@ import {
   ButtonToggle,
 } from "reactstrap";
 import Cintas from '../../../../../controllers/cintas';
+import moment from 'moment';
+import Axios from "axios";
+
+
+import { faItalic, faNetworkWired } from "@fortawesome/free-solid-svg-icons";
 
 const FormGrid = (props) => {
 
   const [data, setData] = useState([])
   const [res, setRes] = useState(false)
 
-  Cintas.getData().then((respuesta) => {
+  Cintas.getDataFinca().then((respuesta) => {
       if (!res) {
       setRes(true)
       setData(respuesta)
     }
   });  
   
+  const[color, setColor]=useState([])
+  const[resColor,setResColor]=useState(false)
+  Cintas.getDataColor().then((Response)=>{
+    if (!resColor) {
+      setResColor(true)
+      setColor(Response)      
+    }
+
+  })
+
+  let anio = moment().year();
+  let num=moment().weeks(); 
+  let colorcinta="";
+  let codigo="";
+
+  color.forEach(cod => {
+    if(cod.id==num){     
+      codigo=cod.codigo;
+      colorcinta=cod.color;
+    }
+  });
+
+  const [fincaSeleccionada, setFincaSeleccionada] = useState({
+    nombre_finca:"",
+    cantidad:""
+  });
+
+  const handleChange = e => {
+
+    const {name, value } = e.target;
+    setFincaSeleccionada((stadoInicial)=>({
+      ...stadoInicial,
+      [name]:value
+    })); 
+   
+  }
+
+
+ 
+ 
+  const  insertar = () =>{
+
+    const baseUrl = "http://localhost/BananasHernandez/cintas/plantaciones.php"; 
+    let f= new FormData();
+   
+      let cantidad= fincaSeleccionada.cantidad;
+      let finca= fincaSeleccionada.nombre_finca;
+
+      f.append('nombre_finca', finca ); 
+      f.append('numero_semana', num); 
+      f.append('cantidad', cantidad); 
+      f.append('color', colorcinta); 
+      f.append('codigo', codigo); 
+      f.append('anio', anio);        
+      f.append('METHOD','POST');    
+         
+
+    Axios.post(baseUrl,f).then((respuesta)=>{
+          alert(JSON.stringify(respuesta.data));
+      })    
+  }
 
   return (
     <Fragment>
+  {JSON.stringify(fincaSeleccionada)}
       <CSSTransitionGroup
         component="div"
         transitionName="TabsAnimation"
@@ -49,10 +116,11 @@ const FormGrid = (props) => {
                     Finca
                   </Label>
                   <Col sm={4}>
-                  <Input type="select" name="select" id="exampleSelect">
+                  <Input type="select" name="nombre_finca" id="exampleSelect" onChange={handleChange} >
+                    <option >Elige un predio</option>
                       {data.map((dato,i)=>{
-                          console.log(dato);
-                        return(<option key={i} value={dato.nombre_finca}>{dato.nombre_finca}</option>);
+                          
+                        return(<option key={i} value={dato.nombre_finca}  >{dato.nombre_finca}</option>);
                       })
                       
                       }
@@ -63,12 +131,16 @@ const FormGrid = (props) => {
                     Numero de semana
                   </Label>
                   <Col sm={2}>
-                    <Input
+                    <div style={{fontFamily: faNetworkWired, color: 'blue', fontSize:28}}>
+                      {num}
+                    </div>
+                    {/* <Input
+                      disabled
                       type="password"
                       name="password"
                       id="examplePassword"
-                      placeholder="48"
-                    />
+                      placeholder={num}
+                    /> */}
                   </Col>
                 </FormGroup>
                 <hr></hr>
@@ -80,25 +152,28 @@ const FormGrid = (props) => {
                      Cantidad 
                     </Label>
                     <Col sm={3}>
-                      <Input type="password" name="password" id="examplePassword" placeholder=""/>
+                      <Input onChange={handleChange}  type="password" name="cantidad" id="examplePassword" placeholder=""/>
                     </Col>                 
 
                   <Label for="examplePassword" sm={3}>
                     Color de cinta correspondiente
                   </Label>
+                
                   <Col sm={2}>
+
                     <Input
-                      style={{ background: "red" }}
+                      disabled
+                      style={{ background: codigo }}
                       type="password"
                       name="password"
                       id="examplePassword"
-                      placeholder=""
+                      placeholder={colorcinta}
                     />
                   </Col>
                 </FormGroup>
                 <FormGroup check row>
                   <Col sm={{ size: 14, offset: 10 }}>
-                    <ButtonToggle color="info">Guardar</ButtonToggle>
+                    <ButtonToggle color="info" onClick={insertar} >Guardar</ButtonToggle>
                     <ButtonToggle className="ml-3" color="danger">
                       Salir
                     </ButtonToggle>

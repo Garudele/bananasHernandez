@@ -3,43 +3,34 @@ import { Alert, Button } from "reactstrap";
 import {connect} from "react-redux";
 import Axios from "axios";
 
-
-
-const WizardStep4 = ({patronCintas,cinta}) => {
+const WizardStep4 = ({cinta}) => {
 
   
-  // let semanas=[];
+  let semanas=[];
 
-  // if(patronCintas.length==10){
-  //   let contador=0;
+  if(cinta.length==10){
+    let contador=0;
     
-  //   for(let x=0;x<52;x++){
-  //       if(contador==10) contador=0;
-  //       semanas[x]= patronCintas[contador++];
-  //   }
+    for(let x=0;x<52;x++){
+        if(contador==10) contador=0;
+        semanas[x]= cinta[contador++];
+    }
 
-  // }
-  // console.log(cinta)
+  }
+  console.log(cinta)
 
 
   const  insertar = () =>{
-    const baseUrl = "http://localhost/bananashernandez/cintas/"; 
+
+    const baseUrl = "http://localhost/BananasHernandez/cintas/"; 
     let f= new FormData();
+      let semanasn= JSON.stringify(semanas)
+      f.append('semanas', semanasn); 
+      f.append('METHOD','POST');    
+         
+    Axios.post(baseUrl,f).then((respuesta)=>{
 
-    if(patronCintas.length==10){
-      let semanas= JSON.stringify(cinta);
-      f.append('semanas', semanas);  
-      f.append('METHOD','POST')
-    }
-      
-     
-    
-      Axios.post(baseUrl,f).then((respuesta)=>{
-            console.log(respuesta)
-      })
-    // })
-    
-
+      })    
   }
 
   return (  <Fragment>
@@ -71,8 +62,7 @@ const WizardStep4 = ({patronCintas,cinta}) => {
 
 
 const mapStateToProps = (state) => ({
- patronCintas: state.reducerCinta.patronCintas,
- cinta: state.reducerCinta.cinta
+  cinta: state.reducerCinta.cinta
 
 })
 
