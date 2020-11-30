@@ -11,7 +11,6 @@ import Monitoreo from "./menu";
 
 
 
-
 const Dashboards = ({ match }) => (
   <Fragment>
     <ThemeOptions />

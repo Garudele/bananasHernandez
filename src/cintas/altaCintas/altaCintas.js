@@ -2,12 +2,12 @@ import React, { Fragment } from "react";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import { Card, CardBody, Row, Col } from "reactstrap";
 
-import MultiStep from "../Wizard";
+import MultiStep from "./index";
 
 import Step1 from "./Steps/Step1";
 import Step2 from "./Steps/Step2";
 import Step4 from "./Steps/Step4";
-import PageTitle from "../../../../../Layout/AppMain/PageTitle";
+
 
 const steps = [
   { name: "Alta de cintas", component: <Step1 /> },
@@ -21,10 +21,7 @@ export default class FormWizardVar3 extends React.Component {
       <Fragment>
         <CSSTransitionGroup component="div" transitionName="TabsAnimation" transitionAppear={true}
           transitionAppearTimeout={0} transitionEnter={false} transitionLeave={false}>
-          <div>
-            <PageTitle heading="Forms Wizard"
-              subheading="Easily create beautiful form multi step wizards!"
-              icon="lnr-map text-info"/>
+          <div>           
             <Row>
               <Col md="12">
                 <Card className="main-card mb-3">
