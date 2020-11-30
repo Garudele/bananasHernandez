@@ -10,7 +10,7 @@ import CRMDashboard from "./CRM/";
 import MinimalDashboard1 from "./Minimal/Variation1";
 import MinimalDashboard2 from "./Minimal/Variation2";
 
-// Layout
+// Layout 
 
 import AppHeader from "../../Layout/AppHeader/";
 import AppSidebar from "../../Layout/AppSidebar/";

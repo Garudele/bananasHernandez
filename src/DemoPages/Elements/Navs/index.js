@@ -9,8 +9,7 @@ import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 
 // Examples
 
-import NavsVertical from "./Examples/NavVertical";
-import NavsHorizontal from "./Examples/NavHorizontal";
+
 import NavsGrid from "./Examples/NavGrid";
 
 export default class NavigationExample extends React.Component {
@@ -25,13 +24,7 @@ export default class NavigationExample extends React.Component {
           <Tabs defaultActiveKey="1" renderTabBar={() => <ScrollableInkTabBar />} renderTabContent={() => <TabContent />}>
             <TabPane tab="Grid Menus" key="1">
               <NavsGrid />
-            </TabPane>
-            <TabPane tab="Vertical Menus" key="2">
-              <NavsVertical />
-            </TabPane>
-            <TabPane tab="Horizontal Menus" key="3">
-              <NavsHorizontal />
-            </TabPane>
+            </TabPane>           
           </Tabs>
         </CSSTransitionGroup>
       </Fragment>

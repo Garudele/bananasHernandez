@@ -16,7 +16,7 @@ import {
   Container,
 } from "reactstrap";
 
-export default class NavsHGrid extends React.Component {
+export default class Menu extends React.Component {
   constructor(props) {
     super(props);
 
@@ -125,3 +125,4 @@ export default class NavsHGrid extends React.Component {
     );
   }
 }
+

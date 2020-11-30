@@ -15,7 +15,7 @@ const Charts = lazy(() => import("../../DemoPages/Charts"));
 const Forms = lazy(() => import("../../DemoPages/Forms"));
 const Tables = lazy(() => import("../../DemoPages/Tables"));
 
-
+ 
 const AppMain = () => {
 
     return (

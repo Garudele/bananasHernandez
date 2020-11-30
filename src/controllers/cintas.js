@@ -14,6 +14,14 @@ class cintas {
         
         return(data.data);
     }
+    static async getDataRegistrosPlantaciones(){
+        const baseUrl = "http://localhost/BananasHernandez/cintas/plantaciones.php";
+        let data=await axios.get(baseUrl);
+        return(data.data);
+       
+        
+
+    }
 
 }
 
