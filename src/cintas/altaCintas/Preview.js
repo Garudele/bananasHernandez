@@ -6,9 +6,10 @@ const Preview = ({ cinta }) => {
  
   let params = []
 
-  let contenido = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+  let contenido = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
 
   let tamanio = cinta.length;
+  
 
   for (let i = 0; i < tamanio; i++) {
     contenido[i] = cinta[i]
@@ -51,8 +52,7 @@ const Preview = ({ cinta }) => {
 
 
     params[i] = filas
-
-    console.log(params)
+  
   }
 
   
@@ -112,6 +112,7 @@ const Preview = ({ cinta }) => {
             let cont = 0;
             let cont2=9;
             let contPrueba=i-1;
+            console.log(params)
             return (
               <tr key={i}>
                 
