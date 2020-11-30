@@ -1,13 +1,7 @@
 import React, { Fragment } from "react";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import {
-  Button,
-  UncontrolledButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  Nav,
-  NavItem,
-  NavLink,
+  Button,  
   Row,
   Col,
   Card,
@@ -15,6 +9,9 @@ import {
   CardTitle,
   Container,
 } from "reactstrap";
+
+import {Link} from "react-router-dom";
+
 
 export default class Menu extends React.Component {
   constructor(props) {
@@ -55,28 +52,30 @@ export default class Menu extends React.Component {
         >
           <Container fluid>
             <Row>
-              <Col xl="12" lg="12">
+              <Col xl="12" lg="12">                
                 <Card className="main-card mb-3">
                   <CardBody>
                     <CardTitle>Cintas</CardTitle>
                     <div className="grid-menu grid-menu-2col">
                       <Row className="no-gutters">
-                        <Col sm="6">
-                          <Button
+                        <Col sm="4">
+                        <Link style={{textDecoration:"none"}}  to="/altaCintas" >
+                        <Button
                             className="btn-icon-vertical btn-square btn-transition"
                             outline
                             color="primary"
                           >
                             <div>
-                              <i className="lnr-calendar-full  btn-icon-wrapper">
-                                {" "}
+                              <i className="lnr-calendar-full  btn-icon-wrapper">                               
                               </i>
                             </div>
                             <div>Alta de patron de colores</div>
-                          </Button>
+                          </Button></Link>
                         </Col>
-                        <Col sm="6">
-                          <Button
+                        
+                        <Col sm="4">
+                         <Link style={{textDecoration:"none"}} to="/registroPlantaciones" >
+                         <Button
                             className="btn-icon-vertical btn-square btn-transition"
                             outline
                             color="secondary"
@@ -86,8 +85,10 @@ export default class Menu extends React.Component {
                             </div>
                             <div>Cargar plantaciones</div>
                           </Button>
+                         </Link >
                         </Col>
-                        <Col sm="6">
+                        <Col sm="4">
+                          <Link style={{textDecoration:"none"}} to="/registros" >
                           <Button
                             className="btn-icon-vertical btn-square btn-transition"
                             outline
@@ -98,9 +99,27 @@ export default class Menu extends React.Component {
                             </div>
                             Registro de plantaciones
                           </Button>
+                          </Link>
                         </Col>
-                        <Col sm="6">
-                          <Button
+                        <Col sm="4">
+                         <Link  style={{textDecoration:"none"}} to="/monitoreo"  >
+                         <Button
+                            className="btn-icon-vertical btn-square btn-transition"
+                            outline
+                            color="info"
+                          >
+                            <div>
+                              <i className="pe-7s-wristwatch btn-icon-wrapper">
+                                {" "}
+                              </i>
+                            </div>
+                            Calendario Anual
+                          </Button>
+                         </Link>
+                        </Col>
+                        <Col sm="4">
+                         <Link  style={{textDecoration:"none"}} to="/monitoreo"  >
+                         <Button
                             className="btn-icon-vertical btn-square btn-transition"
                             outline
                             color="info"
@@ -112,7 +131,25 @@ export default class Menu extends React.Component {
                             </div>
                             Monitoreo de plantaciones
                           </Button>
+                         </Link>
                         </Col>
+                        <Col sm="4">
+                         <Link  style={{textDecoration:"none"}} to="/monitoreo"  >
+                         <Button
+                            className="btn-icon-vertical btn-square btn-transition"
+                            outline
+                            color="info"
+                          >
+                            <div>
+                              <i className="pe-7s-wristwatch btn-icon-wrapper">
+                                {" "}
+                              </i>
+                            </div>
+                            Reportes
+                          </Button>
+                         </Link>
+                        </Col>
+                        
                       </Row>
                     </div>
                   </CardBody>

@@ -1,10 +1,7 @@
 import React, { Fragment } from "react";
-import { Row, Col, FormGroup, Label, Input } from "reactstrap";
-import Cintas from '../../../../../Cintas/Cintas';
-import CintasOrdenadas from '../../../../../Cintas/CintasOrdenadas';
+import Cintas from '../Cintas';
+import CintasOrdenadas from '../CintasOrdenadas';
 import { connect } from 'react-redux';
-import cintas from "../../../../../../controllers/cintas";
-
 
 
 const WizardStep1 =({orden})=>{

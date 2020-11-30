@@ -17,9 +17,8 @@ import {
 import Rodal from "rodal";
 
 import BootstrapTable from "react-bootstrap-table-next";
-import PageTitle from "../../../Layout/AppMain/PageTitle";
-import Cintas from "../../../controllers/cintas";
-import FormGrid from "../../Forms/Elements/Layouts/Examples/FormGrid";
+import Cintas from "../../controllers/cintas";
+import FormGrid from "../../cintas/altaRegistros/altaRegistros";
 import Axios from "axios";
 
 const GridTables = (props) => {
@@ -193,12 +192,7 @@ const defaultSorted = [
 
   return (
     <Fragment>
-      
-      <PageTitle
-        heading="Grid Tables"
-        subheading="Basic example of a React table with sort, search and filter functionality."
-        icon="pe-7s-notebook icon-gradient bg-mixed-hopes"
-      />
+    
       <CSSTransitionGroup
         component="div"
         transitionName="TabsAnimation"

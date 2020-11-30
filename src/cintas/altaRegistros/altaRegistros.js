@@ -14,7 +14,7 @@ import {
   Container,
   ButtonToggle,
 } from "reactstrap";
-import Cintas from '../controllers/cintas';
+import Cintas from '../../controllers/cintas';
 import moment from 'moment';
 import Axios from "axios";
 
