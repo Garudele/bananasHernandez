@@ -55,7 +55,7 @@ export default class Menu extends React.Component {
               <Col xl="12" lg="12">                
                 <Card className="main-card mb-3">
                   <CardBody>
-                    <CardTitle>Cintas</CardTitle>
+                    <CardTitle>Cintas</CardTitle> 
                     <div className="grid-menu grid-menu-2col">
                       <Row className="no-gutters">
                         <Col sm="4">
@@ -146,6 +146,54 @@ export default class Menu extends React.Component {
                               </i>
                             </div>
                             Reportes
+                          </Button>
+                         </Link>
+                        </Col>
+                        <Col sm="4">
+                         <Link  style={{textDecoration:"none"}} to="/analytics"  >
+                         <Button
+                            className="btn-icon-vertical btn-square btn-transition"
+                            outline
+                            color="info"
+                          >
+                            <div>
+                              <i className="pe-7s-wristwatch btn-icon-wrapper">
+                                {" "}
+                              </i>
+                            </div>
+                            Analytics
+                          </Button>
+                         </Link>
+                        </Col>
+                        <Col sm="4">
+                         <Link  style={{textDecoration:"none"}} to="/sales"  >
+                         <Button
+                            className="btn-icon-vertical btn-square btn-transition"
+                            outline
+                            color="info"
+                          >
+                            <div>
+                              <i className="pe-7s-wristwatch btn-icon-wrapper">
+                                {" "}
+                              </i>
+                            </div>
+                            Sales
+                          </Button>
+                         </Link>
+                        </Col>
+                        <Col sm="4">
+                         <Link  style={{textDecoration:"none"}} to="/commerce"  >
+                         <Button
+                            className="btn-icon-vertical btn-square btn-transition"
+                            outline
+                            color="info"
+                          >
+                            <div>
+                              <i className="pe-7s-wristwatch btn-icon-wrapper">
+                                {" "}
+                              </i>
+                            </div>
+                            Commerce
                           </Button>
                          </Link>
                         </Col>
