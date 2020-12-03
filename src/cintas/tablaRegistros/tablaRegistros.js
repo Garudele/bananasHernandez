@@ -21,7 +21,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import Cintas from "../../controllers/cintas";
 import FormGrid from "../../cintas/altaRegistros/altaRegistros";
 import Axios from "axios";
-
+import Swal from 'sweetalert2';
 const GridTables = (props) => {
 
 const [sweetEditar, setSweetEditar] = useState(false);
@@ -41,7 +41,6 @@ const [registros, setRegistros]=useState([
 ]);
 
 const [modalEditar,setModalEditar]= useState(false);
-const [modalEliminar,setModalEliminar]= useState(false);
 const hide =() =>{
   setModalEditar(!modalEditar);
 }
@@ -115,22 +114,51 @@ const actualiza =()=>{
    
 }
 
-const[auxiliar,setAuxiliar]=useState({});
 
-const preEliminar=(row)=>{
-  setModalEliminar(!modalEliminar);
-  setAuxiliar(row);  
-}
 
-const Delete=(dato)=>{
-  const baseUrl = "http://localhost/BananasHernandez/cintas/plantaciones.php"; 
-  let f= new FormData();
-  f.append("id", dato.id);
-  f.append("METHOD","ELIMINAR")  
+const alertDelete=(dato)=>{
+  const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: '¿Está seguro de eliminar este registro?',
+      text: "¡No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar!',
+      cancelButtonText: 'Cancelar!',
+      reverseButtons: true
 
-  Axios.post(baseUrl,f).then((respuesta)=>{    
-    valoresTabla(respuesta.data);
-  });
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const baseUrl = "http://localhost/BananasHernandez/cintas/plantaciones.php"; 
+        let f= new FormData();
+        f.append("id", dato.id);
+        f.append("METHOD","ELIMINAR")  
+      
+        Axios.post(baseUrl,f).then((respuesta)=>{    
+          swalWithBootstrapButtons.fire(
+            'Registro eliminado!',
+          )    
+          valoresTabla(respuesta.data);
+               
+        });                     
+ 
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'El registro de plantación no fue eliminado.'
+        )
+      }
+    })
 }
 
 const columns = [
@@ -190,12 +218,10 @@ const columns = [
                   <span style={{color:"blue" }} >Editar</span>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem onClick={()=>{preEliminar(row)}} >
+                <DropdownItem onClick={()=>{alertDelete(row)}} > 
                 <i className="dropdown-icon lnr-trash  "> </i>
                   <span style={{color:"red" }} >Eliminar</span>
-                </DropdownItem>
-                
-                
+                </DropdownItem>                                
               </DropdownMenu>
             </UncontrolledButtonDropdown>
           </div>
@@ -214,7 +240,7 @@ const defaultSorted = [
 
   return (
     <Fragment>
-    
+     
       <CSSTransitionGroup
         component="div"
         transitionName="TabsAnimation"
@@ -266,25 +292,7 @@ const defaultSorted = [
                           text="" type="error" onConfirm={() => { setSweetCantidad(!sweetCantidad) }} />
             </ModalFooter>
           </Rodal>
-              
-          <Rodal width="700" visible={modalEliminar} onClose={hide}  animation="rotate" showMask={false}>
-            <ModalHeader>Editar registro</ModalHeader>
-            <ModalBody>           
-            <h2>¿Está seguro de eliminar este registro?</h2>
-            </ModalBody>
-            <ModalFooter>
-              <Button color="link" onClick={()=>{setModalEliminar(!modalEliminar)}}>
-                Cancelar
-              </Button>
-              <Button color="primary" onClick={()=>{Delete(auxiliar);setModalEliminar(!modalEliminar)}}>
-                Aceptar
-              </Button>
-              <SweetAlert title="Registro editado correctamente" confirmButtonColor="" show={sweetEditar}
-                          text="" type="success" onConfirm={() => { setSweetEditar(!sweetEditar) }} />
-                          <SweetAlert title="Inserte una cantidad para continuar" confirmButtonColor="" show={sweetCantidad}
-                          text="" type="error" onConfirm={() => { setSweetCantidad(!sweetCantidad) }} />
-            </ModalFooter>
-          </Rodal>
+         
 
       </CSSTransitionGroup>
     </Fragment>

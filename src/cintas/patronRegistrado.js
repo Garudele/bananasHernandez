@@ -20,16 +20,16 @@ import SweetAlert from "sweetalert-react";
 import Cintas from "../controllers/cintas";
 import moment from "moment";
 import Axios from "axios";
+import Swal from 'sweetalert2';
+
+
 
 const PatronRegistrado = () => {
 
-    const [modalEliminar, setModalEliminar]=useState(false);
-    const [sweetEliminar,setSweetEliminar]=useState(false);
-    const [sweetElim,setSweetElim]=useState(false);
-
-    let anioActual = moment().year();
+    const [sweetElim,setSweetElim]=useState(false);    
     const [res,setRes]=useState(false);
     const [consulta,setConsulta]=useState(false);
+    let anioActual = moment().year();
 
     Cintas.getDataRegistrosPlantaciones().then((Response) => {
 
@@ -44,10 +44,28 @@ const PatronRegistrado = () => {
       });
 
 
+      const alertDelete=()=>{
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-success',
+              cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: '¿Está seguro de eliminar el patrón de cintas de este año?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Eliminar!',
+            cancelButtonText: 'Cancelar!',
+            reverseButtons: true
 
-      const Delete=()=>{
-        
-       
+          }).then((result) => {
+            if (result.isConfirmed) {
+
+                            
         const baseUrl = "http://localhost/BananasHernandez/cintas/semanaCinta.php"; 
         let f= new FormData();
         f.append("anio", anioActual);
@@ -57,16 +75,28 @@ const PatronRegistrado = () => {
             setSweetElim(!sweetElim);
         }
         else{
-            Axios.post(baseUrl,f).then((respuesta)=>{     
-             setSweetEliminar(!sweetEliminar);            
-             window.location = '/menu';
+            Axios.post(baseUrl,f).then((respuesta)=>{  
+                
+             
+                swalWithBootstrapButtons.fire(
+                    'Registro eliminado!',
+                    'Inserte el patrón de cintas nuevamente'
+                  )          
+                 window.location = '/menu';
             });
         }
-      
+
+            } else if (
+              /* Read more about handling dismissals below */
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire(
+                'Cancelado',
+                'El patrón de cintas no fue eliminado.'
+              )
+            }
+          })
       }
-
-
-
 
     return (
         <Fragment>
@@ -83,7 +113,7 @@ const PatronRegistrado = () => {
                               </p>
                                 <hr />
                                 <p className="mb-0">
-                                    <Button onClick={()=>{setModalEliminar(!modalEliminar)}} className="mb-2 mr-2" color="success">
+                                    <Button onClick={alertDelete} className="mb-2 mr-2" color="success">
                                         Eliminar
                                     </Button>
                                 </p>
@@ -93,25 +123,9 @@ const PatronRegistrado = () => {
                 </Col>
             </Row>
 
-            <Rodal width="700" visible={modalEliminar} onClose={()=>{setModalEliminar(!modalEliminar)}} animation="rotate" showMask={false}>
-                <ModalHeader>Eliminar patrón de cintas</ModalHeader>
-                <ModalBody>
-                    <h2>¿Está seguro de eliminar el patrón de cintas de este año?</h2>
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="link" onClick={() => { setModalEliminar(!modalEliminar) }}>
-                        Cancelar
-                   </Button>
-                    <Button color="primary" onClick={Delete}>
-                        Aceptar
-               </Button>
-                    <SweetAlert title="Registro eliminado" confirmButtonColor="" show={sweetEliminar}
-                        text="" type="success" onConfirm={() => { setSweetEliminar(!sweetEliminar) }} />
-                        <SweetAlert title="No se puede eliminar el patrón de cintas, ya cuenta con registros en plantaciones" confirmButtonColor="" show={sweetElim}
+          
+            <SweetAlert title="No se puede eliminar el patrón de cintas, ya cuenta con registros en plantaciones" confirmButtonColor="" show={sweetElim}
                         text="" type="error" onConfirm={() => { setSweetElim(!sweetElim)}} />
-                </ModalFooter>
-            </Rodal>
-
         </Fragment>
     );
 }
