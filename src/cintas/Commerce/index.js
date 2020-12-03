@@ -15,10 +15,9 @@ export default class CommerceDashboard extends Component {
           transitionAppearTimeout={0} transitionEnter={false} transitionLeave={false}>
          
           <Tabs defaultActiveKey="1" renderTabBar={() => <ScrollableInkTabBar />} renderTabContent={() => <TabContent />}>
-            <TabPane tab="Variation 1" key="1">
+            <TabPane tab="Monitoreo" key="1">
               <CommerceDashboard1 />
-            </TabPane>
-           
+            </TabPane>           
           </Tabs>
         </CSSTransitionGroup>
       </Fragment>

@@ -1,54 +1,38 @@
-
-
-import { Button, Col, Row } from "reactstrap";
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-// import controlCintas from '../../controllers/cintas';
+import { Row, Col } from "reactstrap";
+import { IoIosPricetags } from "react-icons/io";
 
 const Cintas = ({ cintas, agregarCinta }) => {
-//   const [data, setData] = useState([])
-//   const [res, setRes] = useState(false)
-
-//   controlCintas.getData().then((respuesta) => {
-//     if (!res) {
-//       setRes(true)
-//       setData(respuesta)
-//       getDataInitial(respuesta)
-//     }
-//   });  
 
   return (
     <div>
-      <h1>Ordenar Cintas</h1>
+      <h1 style={{ fontWeight: "bold", textAlign: "center" }} >Ordenar cintas</h1>
+      <div className="divider"></div>
       <Row>
-        {cintas.map((cinta) => (
-          <Col md={1} key={cinta.id}>
-            {cinta.color === 'Blanca' ? (
-              <Button
-                className="btn-sm"
-                onClick={() => agregarCinta(cinta)}
-                style={{ background: cinta.codigo, color: 'black', border: '2px solid black' }}>
-                {cinta.color}
-              </Button>
-            ) : cinta.color === 'Amarilla' ? (
-              <Button
-                className="btn-sm"
-                onClick={() => agregarCinta(cinta)}
-                style={{ background: cinta.codigo, color: 'black', border: '2px solid black' }}>
-                {cinta.color}
-              </Button>
-            ) : (
-              <Button
-                className="btn-sm"
-                onClick={() => agregarCinta(cinta)}
-                style={{ background: cinta.codigo, border: `2px solid black` }}>
-                {cinta.color}
-              </Button>
-            )}
-          </Col>
-         
+      <Col >
+        {cintas.map((cinta, i) => (        
+
+            <div >
+              {cinta.color === 'Blanca' ? (
+                <div id={cinta.color} onClick={() => agregarCinta(cinta)} className="font-icon-wrapper font-icon-lg">
+                  <IoIosPricetags key={i} id="sopa" fontSize="40px" color="white" style={{ background: "black", borderRadius: "10%", padding: 5, marginLeft: 5 }} /> <br />
+                  <span style={{ color: "#5863FF", fontWeight: "bold" }}>{cinta.color}</span>
+                </div>
+              ) : cinta.color === 'Amarilla' ? (
+                <div id={cinta.color} onClick={() => agregarCinta(cinta)} className="font-icon-wrapper font-icon-lg">
+                  <IoIosPricetags key={i} id="shainy" fontSize="40px" color={cinta.codigo} style={{ background: "black", borderRadius: "10%", padding: 5, marginLeft: 5 }} /><br />
+                  <span style={{ color: "#5863FF", fontWeight: "bold" }}>{cinta.color}</span>
+                </div>
+              ) : (<div id={cinta.color} onClick={() => agregarCinta(cinta)} className="font-icon-wrapper font-icon-lg">
+                <IoIosPricetags key={i} id="rosa" fontSize="40px" color={cinta.codigo} style={{ background: "#CED3D5", borderRadius: "10%", padding: 5, marginLeft: 5 }} /><br />
+                <span style={{ color: "#5863FF", fontWeight: "bold" }}>{cinta.color}</span>
+              </div>
+                  )}
+            </div>
+        
         ))}
-  
+          </Col>
       </Row>
     </div>
   )
@@ -64,12 +48,5 @@ const mapDispatchToProps = (dispatch) => ({
       cinta
     })
   },
-  // getDataInitial(respuesta) {
-  //   dispatch({
-  //     type: 'CARGAR',
-  //     respuesta
-  //   })
-  // }
-  
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Cintas)

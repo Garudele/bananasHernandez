@@ -16,12 +16,17 @@ import {
 } from "reactstrap";
 import Rodal from "rodal";
 
+import SweetAlert from "sweetalert-react";
 import BootstrapTable from "react-bootstrap-table-next";
 import Cintas from "../../controllers/cintas";
 import FormGrid from "../../cintas/altaRegistros/altaRegistros";
 import Axios from "axios";
 
 const GridTables = (props) => {
+
+const [sweetEditar, setSweetEditar] = useState(false);
+const [sweetConfirmar, setSweetConfirmar] = useState(false);
+const [sweetCantidad, setSweetCantidad] = useState(false);
 
 const [res,setRes]=useState(false);
 const [registros, setRegistros]=useState([
@@ -36,6 +41,7 @@ const [registros, setRegistros]=useState([
 ]);
 
 const [modalEditar,setModalEditar]= useState(false);
+const [modalEliminar,setModalEliminar]= useState(false);
 const hide =() =>{
   setModalEditar(!modalEditar);
 }
@@ -92,20 +98,36 @@ const actualiza =()=>{
     f.append("cantidad", datosNuevos.cantidad);
     f.append("METHOD","PUT");
 
-    Axios.post(baseUrl,f).then((respuesta)=>{
-      alert("Registro Actualizado correctamente");
-       setModalEditar(!modalEditar);
-       valoresTabla(respuesta.data);
-    });
+    if(!datosNuevos.cantidad){
+      setSweetCantidad(!sweetCantidad)
+    }
+    else{
+      Axios.post(baseUrl,f).then((respuesta)=>{
+        setModalEditar(!modalEditar);
+        valoresTabla(respuesta.data);
+        setSweetEditar(!sweetEditar)
+     });
+    }
+
+
+   
 
    
 }
 
-const Eliminar=(dato)=>{
+const[auxiliar,setAuxiliar]=useState({});
+
+const preEliminar=(row)=>{
+  setModalEliminar(!modalEliminar);
+  setAuxiliar(row);  
+}
+
+const Delete=(dato)=>{
   const baseUrl = "http://localhost/BananasHernandez/cintas/plantaciones.php"; 
   let f= new FormData();
   f.append("id", dato.id);
-  f.append("METHOD","ELIMINAR")
+  f.append("METHOD","ELIMINAR")  
+
   Axios.post(baseUrl,f).then((respuesta)=>{    
     valoresTabla(respuesta.data);
   });
@@ -168,7 +190,7 @@ const columns = [
                   <span style={{color:"blue" }} >Editar</span>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem onClick={()=>{Eliminar(row)}} >
+                <DropdownItem onClick={()=>{preEliminar(row)}} >
                 <i className="dropdown-icon lnr-trash  "> </i>
                   <span style={{color:"red" }} >Eliminar</span>
                 </DropdownItem>
@@ -228,8 +250,7 @@ const defaultSorted = [
 
         <Rodal width="700" visible={modalEditar} onClose={hide}  animation="rotate" showMask={false}>
             <ModalHeader>Editar registro</ModalHeader>
-            <ModalBody>  
-              {JSON.stringify(datosNuevos)}           
+            <ModalBody>           
               <FormGrid editar={modalEditar} registro={registroSeleccionado} setDatosNuevos={setDatosNuevos} datosNuevos={datosNuevos} />
             </ModalBody>
             <ModalFooter>
@@ -239,6 +260,29 @@ const defaultSorted = [
               <Button color="primary" onClick={actualiza}>
                 Actualizar
               </Button>
+              <SweetAlert title="Registro editado correctamente" confirmButtonColor="" show={sweetEditar}
+                          text="" type="success" onConfirm={() => { setSweetEditar(!sweetEditar) }} />
+                          <SweetAlert title="Inserte una cantidad para continuar" confirmButtonColor="" show={sweetCantidad}
+                          text="" type="error" onConfirm={() => { setSweetCantidad(!sweetCantidad) }} />
+            </ModalFooter>
+          </Rodal>
+              
+          <Rodal width="700" visible={modalEliminar} onClose={hide}  animation="rotate" showMask={false}>
+            <ModalHeader>Editar registro</ModalHeader>
+            <ModalBody>           
+            <h2>¿Está seguro de eliminar este registro?</h2>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="link" onClick={()=>{setModalEliminar(!modalEliminar)}}>
+                Cancelar
+              </Button>
+              <Button color="primary" onClick={()=>{Delete(auxiliar);setModalEliminar(!modalEliminar)}}>
+                Aceptar
+              </Button>
+              <SweetAlert title="Registro editado correctamente" confirmButtonColor="" show={sweetEditar}
+                          text="" type="success" onConfirm={() => { setSweetEditar(!sweetEditar) }} />
+                          <SweetAlert title="Inserte una cantidad para continuar" confirmButtonColor="" show={sweetCantidad}
+                          text="" type="error" onConfirm={() => { setSweetCantidad(!sweetCantidad) }} />
             </ModalFooter>
           </Rodal>
 

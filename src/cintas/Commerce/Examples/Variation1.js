@@ -26,17 +26,6 @@ import {
 } from "reactstrap";
 
 
-import bg1 from "../../../assets/utils/images/dropdown-header/abstract1.jpg";
-import bg2 from "../../../assets/utils/images/dropdown-header/abstract2.jpg";
-import bg3 from "../../../assets/utils/images/dropdown-header/abstract3.jpg";
-
-import classnames from "classnames";
-
-import avatar1 from "../../../assets/utils/images/avatars/1.jpg";
-import avatar2 from "../../../assets/utils/images/avatars/2.jpg";
-import avatar3 from "../../../assets/utils/images/avatars/3.jpg";
-import avatar4 from "../../../assets/utils/images/avatars/4.jpg";
-
 import IncomeReport from "./Components/IncomeReport";
 
 import {
@@ -47,6 +36,7 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TablaRegistros from "../../tablaRegistros/tablaRegistros"
+import Card2 from "../../Sales/Examples/Card2";
 
 
 function boxMullerRandom() {
@@ -167,8 +157,7 @@ export default class CommerceDashboard1 extends Component {
             <Col lg="12" xl="6">
               <Card className="main-card mb-3">
                 <CardBody>
-                  <CardTitle>Monitoreo de siembras {anio}</CardTitle>
-                  <IncomeReport />
+                  <Card2  boton={true} />
                 </CardBody>
               </Card>
             </Col>
@@ -181,7 +170,7 @@ export default class CommerceDashboard1 extends Component {
                       <div className="widget-chart widget-chart-hover">
                         <div className="icon-wrapper rounded-circle">
                           <div className="icon-wrapper-bg bg-primary" />
-                          <i className="lnr-calendar-full  btn-icon-wrapper"></i>
+                          <i className="lnr-pencil  btn-icon-wrapper"></i>
                         </div>
                         <div className="widget-numbers">Alta patrón cintas</div>
                         <div className="widget-subheading">{anio}</div>
@@ -194,7 +183,7 @@ export default class CommerceDashboard1 extends Component {
                       <div className="widget-chart widget-chart-hover">
                         <div className="icon-wrapper rounded-circle">
                           <div className="icon-wrapper-bg bg-info" />
-                          <i className="lnr-graduation-hat text-info" />
+                          <i className="lnr-calendar-full  btn-icon-wrapper"></i>
                         </div>
                         <div className="widget-numbers">Calendario de cintas</div>
                         <div className="widget-subheading">{anio}</div>
@@ -207,7 +196,7 @@ export default class CommerceDashboard1 extends Component {
                       <div className="widget-chart widget-chart-hover">
                         <div className="icon-wrapper rounded-circle">
                           <div className="icon-wrapper-bg bg-danger" />
-                          <i className="lnr-laptop-phone text-danger" />
+                          <i className="lnr-file-add text-danger" />
                         </div>
                         <div className="widget-numbers text-center">Registrar</div>
                         <div className="widget-subheading">
@@ -221,7 +210,7 @@ export default class CommerceDashboard1 extends Component {
                     <Link style={{textDecoration:"none"}}  to="/registros">
                       <div className="widget-chart widget-chart-hover br-br">
                         <div className="icon-wrapper rounded-circle">
-                          <div className="icon-wrapper-bg bg-success" />
+                          <div className="icon-wrapper-bg bg-primary" />
                           <i className="lnr-screen" />
                         </div>
                         <div className="widget-numbers">Registros</div>
@@ -234,8 +223,8 @@ export default class CommerceDashboard1 extends Component {
                     <Link style={{textDecoration:"none"}}  to="/monitoreo">
                       <div className="widget-chart widget-chart-hover br-br">
                         <div className="icon-wrapper rounded-circle">
-                          <div className="icon-wrapper-bg bg-success" />
-                          <i className="lnr-screen" />
+                          <div className="icon-wrapper-bg bg-info" />
+                          <i className="lnr-chart-bars" />
                         </div>
                         <div className="widget-numbers">Monitoreo</div>
                         <div className="widget-subheading">Siembras</div>
@@ -247,12 +236,11 @@ export default class CommerceDashboard1 extends Component {
                     <Link style={{textDecoration:"none"}}  to="/reportes">
                       <div className="widget-chart widget-chart-hover br-br">
                         <div className="icon-wrapper rounded-circle">
-                          <div className="icon-wrapper-bg bg-success" />
-                          <i className="lnr-screen" />
+                          <div className="icon-wrapper-bg bg-danger" />
+                          <i className="lnr-printer" />
                         </div>
                         <div className="widget-numbers">Reportes</div>
-                        <div className="widget-subheading">de siembras</div>
-                        
+                        <div className="widget-subheading">de siembras</div>                       
                       </div>
                       </Link>
                     </Col>

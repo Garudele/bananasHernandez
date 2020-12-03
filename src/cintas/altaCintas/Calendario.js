@@ -162,6 +162,7 @@ const Preview = ({ cinta }) => {
                         {fila.map((campo, i) => {
                           if (i < 7) {
                             return <td key={i}>{JSON.stringify(campo)}</td>;
+                           
                           } else if (i == 7) {
                             if (campo) {
                               return (
@@ -169,7 +170,10 @@ const Preview = ({ cinta }) => {
                                   key={i}
                                   style={{ background: campo.codigo }}
                                 >
-                                  {campo.color}
+                                   {campo.color==="Amarilla" ? (<spam style={{ fontWeight: "bold", color:"black"}}>{campo.color }</spam>)
+                      : campo.color==="Blanca"?(<spam style={{ fontWeight: "bold", color:"black"}}>{campo.color }</spam>)
+                      :(<spam style={{ fontWeight: "bold", color:"white"}}>{campo.color }</spam>)
+                      }
                                 </td>
                               );
                             } else return <td key={i}></td>;

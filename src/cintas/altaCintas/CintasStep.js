@@ -3,23 +3,22 @@ import { Button, Col, Row, Table } from "reactstrap"
 import { connect } from 'react-redux'
 import { IoIosPricetags} from "react-icons/io";
 import LaddaButton, {ZOOM_IN,} from "react-ladda";
+import moment from "moment";
 
 const x = 7;
 const z = 5;
+let anio = moment().year();
 
 
-
-const CintasOrdenadas = ({limpiar, cinta }) =>{
+const CintasStep= ({limpiar, cinta }) =>{
  
  return(
-  <div>
-    <h1 style={{ fontWeight: "bold", textAlign: "center" }} >Cintas ordenadas</h1>
-    <Row>
-    <Col>
+  <div >
+    <h1 style={{ fontWeight: "bold", textAlign: "center" }} >Patrón de cintas de colores {anio}</h1>
+    <Row  >
       {cinta.map((cinta, i) => (
-       
-          <div>
-            
+        <Col  md={1} key={cinta.id} className='p-0'>
+
           {cinta.color === 'Blanca' ? (
             <div className="font-icon-wrapper font-icon-lg">
 
@@ -41,18 +40,10 @@ const CintasOrdenadas = ({limpiar, cinta }) =>{
               </div>
             )
           }
-          </div>
-       
-      ))}  
-       </Col>   
+        </Col>
+      ))}     
     </Row>
-    <Row>
-    <Col style={{textAlign:"center"}}> 
-    <Button  onClick={() => limpiar(cinta)} outline className="mb-2 mr-2 btn-dashed" color="primary">
-      Limpiar orden
-     </Button> 
-      </Col>
-    </Row>
+   
   </div>
 )}
 const mapStateToProps = (state) => ({
@@ -71,4 +62,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 })
-export default connect(mapStateToProps, mapDispatchToProps)(CintasOrdenadas)
+export default connect(mapStateToProps, mapDispatchToProps)(CintasStep)

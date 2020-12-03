@@ -1,9 +1,10 @@
 import React from 'react'
 import { Button, Col, Row, Table } from "reactstrap"
 import { connect } from 'react-redux'
+import moment from "moment";
 
 const Preview = ({ cinta }) => {
- 
+  let anio = moment().year();
   let params = []
 
   let contenido = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
@@ -58,7 +59,9 @@ const Preview = ({ cinta }) => {
   
   return (
     <Row>
-      <Table bordered hover>
+      <Col> <h1 style={{textAlign:"center", fontWeight: "bold"  }}> Calendario {anio}</h1></Col>
+       <Col>
+       <Table bordered hover>
         <thead>
           <tr>
             <th></th>
@@ -112,7 +115,7 @@ const Preview = ({ cinta }) => {
             let cont = 0;
             let cont2=9;
             let contPrueba=i-1;
-            console.log(params)
+            
             return (
               <tr key={i}>
                 
@@ -122,7 +125,12 @@ const Preview = ({ cinta }) => {
                     return <td key={i}>{JSON.stringify(campo)}</td>
                   } else if (i == 7) {
                     if (campo) {
-                    return <td key={i} style={{ background: campo.codigo }}>{campo.color}</td>
+                    return <td key={i} style={{ background: campo.codigo }}>
+                      {campo.color==="Amarilla" ? (<spam style={{ fontWeight: "bold", color:"black"}}>{campo.color }</spam>)
+                      : campo.color==="Blanca"?(<spam style={{ fontWeight: "bold", color:"black"}}>{campo.color }</spam>)
+                      :(<spam style={{ fontWeight: "bold", color:"white"}}>{campo.color }</spam>)
+                      }                      
+                    </td>
                     } else return <td key={i}></td>
                   } else if(i==8){
                     let arrayColors=[];
@@ -165,6 +173,7 @@ const Preview = ({ cinta }) => {
           })}
         </tbody>
       </Table>
+       </Col>
     </Row>
   )
 }

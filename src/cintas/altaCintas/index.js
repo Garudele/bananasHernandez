@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "reactstrap";
+import { Button, Row, Col, Card, Container } from "reactstrap";
 
 const getNavStates = (indx, length) => {
   let styles = [];
@@ -99,23 +99,25 @@ export default class MultiStep extends React.Component {
 
   render() {
     return (
-      <div onKeyDown={this.handleKeyDown}>
-        <ol className="forms-wizard">{this.renderSteps()}</ol>
-        {this.props.steps[this.state.compState].component}
-        <div className="divider" />
-        <div className="clearfix">
-          <div style={this.props.showNavigation ? {} : { display: "none" }}>
-            <Button color="secondary" className="btn-shadow float-left btn-wide btn-pill" outline
-              style={this.state.showPreviousBtn ? {} : { display: "none" }} onClick={this.previous}>
-              Previous
+      <Container>
+        <div onKeyDown={this.handleKeyDown}>
+          <Col style={{ width: "100%" }} md={9}> <ol className="forms-wizard">{this.renderSteps()}</ol></Col>
+          {this.props.steps[this.state.compState].component}
+          <div className="divider" />
+          <div className="clearfix">
+            <div style={this.props.showNavigation ? {} : { display: "none" }}>
+              <Button color="secondary" className="btn-shadow float-left btn-wide btn-pill" outline
+                style={this.state.showPreviousBtn ? {} : { display: "none" }} onClick={this.previous}>
+                Anterior
             </Button>
-            <Button color="primary" className="btn-shadow btn-wide float-right btn-pill btn-hover-shine"
-              style={this.state.showNextBtn ? {} : { display: "none" }} onClick={this.next}>
-              Next
+              <Button color="primary" className="btn-shadow btn-wide float-right btn-pill btn-hover-shine"
+                style={this.state.showNextBtn ? {} : { display: "none" }} onClick={this.next}>
+                Siguiente
             </Button>
+            </div>
           </div>
         </div>
-      </div>
+      </Container>
     );
   }
 }
