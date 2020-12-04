@@ -12,6 +12,7 @@ import Calendario from "./altaCintas/Calendario";
 import Analytics from "./Analytics";
 import Sales from "./Sales";
 import Reportes from "./Reportes";
+import FormatoReporte from "./FormatoReporte";
 
 const Dashboards = ({ match }) => (
   <Fragment>
@@ -23,6 +24,7 @@ const Dashboards = ({ match }) => (
           <Route path={`/calendario`} component={Calendario} />
           <Route path={`/monitoreo`} component={Sales}/>
           <Route path={`/reportes`} component={Reportes}/>
+          <Route path={`/formato`} component={FormatoReporte}/>
         </div>
   </Fragment>
 );

@@ -111,7 +111,7 @@ const FormGrid = (props) => {
   const insertar = () => {
 
 
-    const baseUrl = "http://localhost/BananasHernandez/cintas/plantaciones.php";
+    const baseUrl = "http://bananashernandez.com/controlcintas/APICintas/plantaciones.php";
     let f = new FormData();
 
     let cantidad = fincaSeleccionada.cantidad;

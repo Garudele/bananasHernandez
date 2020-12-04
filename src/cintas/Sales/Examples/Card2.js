@@ -41,7 +41,7 @@ const Card2 = (props) => {
     {registro.id ? (
           <span>Plantaciones realizadas en la semana {num - 11} listas para corte</span>
         ):(
-          <span></span>
+          <span>err</span>
         )
 
         }

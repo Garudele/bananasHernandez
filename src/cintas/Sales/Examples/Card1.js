@@ -22,8 +22,8 @@ const Card1 = (props) => {
 
   Cintas.getDataRegistrosPlantaciones().then((Response) => {
     if (!resRegistro) {
-      setResRegistro(true)
-      setRegistro(Response)
+      setResRegistro(true);
+      setRegistro(Response);
     }
   })
 
@@ -40,7 +40,7 @@ const Card1 = (props) => {
         {registro.id ? (
           <span>Plantaciones realizadas en la semana {num - 11} listas para corte</span>
         ):(
-          <span></span>
+        <span>{JSON.stringify(registro.id)}</span>
         )
 
         }
