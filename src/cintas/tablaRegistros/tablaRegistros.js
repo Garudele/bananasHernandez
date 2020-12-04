@@ -69,8 +69,7 @@ Cintas.getDataRegistrosPlantaciones().then((respuesta) => {
 
   if (!res) {
     setRes(true);    
-      valoresTabla(respuesta);
-  
+      valoresTabla(respuesta);  
   }
 });
 const [registroSeleccionado, setRegistroSeleccionado]=useState({});
