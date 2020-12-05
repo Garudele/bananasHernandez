@@ -18,9 +18,8 @@ class cintas {
         const baseUrl = "http://localhost/BananasHernandez/cintas/plantaciones.php";
         let data=await axios.get(baseUrl);
         return(data.data);
-       
-        
-
+              
+ 
     }     
 
 }

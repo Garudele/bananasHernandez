@@ -81,60 +81,105 @@ const styles = StyleSheet.create({
 
     margin: "auto",
     flexDirection: "row",
-    
+
   },
-  tableRowSubtittle: {
-    
+  tableRowTitulo: {
     margin: "auto",
     flexDirection: "row",
-    backgroundColor:"#a4b494",
-    
-   
+
+  },
+  tableRowSubtittle: {
+
+    margin: "auto",
+    flexDirection: "row",
+    backgroundColor: "#a4b494",
+
+
   },
 
-  tableCol: {
-    width: "20%",    
+  tableCol1: {
+    width: "15%",
+    borderStyle: "solid",
+    borderRightWidth: 1,
+    borderBottom: 1
+  },
+  tableCol2: {
+    width: "20%",
+    borderStyle: "solid",
+    borderRightWidth: 1,
+    borderBottom: 1
+  },
+  tableCol3: {
+    width: "10%",
+    borderStyle: "solid",
+    borderRightWidth: 1,
+    borderBottom: 1
+  },
+  tableCol4: {
+    width: "15%",
+    borderStyle: "solid",
+    borderRightWidth: 1,
+    borderBottom: 1
+  },
+  tableCol5: {
+    width: "20%",
+    borderStyle: "solid",
+    borderRightWidth: 1,
+    borderBottom: 1
+  },
+  tableCol6: {
+    width: "20%",
+    borderStyle: "solid",
+    borderRightWidth: 1,
+    borderBottom: 1
+  },
+  tableColTitulo: {
+    width: "100%",
     borderStyle: "solid",
     borderWidth: 1,
     borderLeftWidth: 0,
-    borderTopWidth: 0
+    borderTopWidth: 0,
+    backgroundColor: "#519872"
+  },
+
+
+  tableColPredio: {
+    width: "20%",
+    borderStyle: "solid",
+    borderRightWidth: 1,
+    borderBottom: 1
+  },
+  tableColPredioSuma2: {
+    width: "20%",
+    borderStyle: "solid",
+    borderRightWidth: 1,
+    borderBottom: 1,
+  },
+  tableColPredioSuma1: {
+    width: "80%",
+    borderStyle: "solid",
+    borderRightWidth: 1,
+    borderBottom: 1,
   },
 
   tableCellSubtittle: {
     margin: "auto",
     marginTop: 5,
-    fontSize: 10,
-    fontWeight:"bold",
-    fontSize:11
+    fontWeight: "bold",
+    fontSize: 11
   },
   tableCell: {
     margin: "auto",
     marginTop: 5,
-    fontSize: 10,
-    fontWeight:"bold",
-  },
-  
-  tableRowTitulo: {
-
-    margin: "auto",
-    flexDirection: "row",
-   
+    fontWeight: "bold",
+    fontSize: 10
   },
 
-  tableColTitulo: {
-    width: "50%",
-    
-    borderStyle: "solid",
-    borderWidth: 1,
-    borderLeftWidth: 0,
-    borderTopWidth: 0,
-    backgroundColor:"#519872"
-  },
 
   tableCellTitulo: {
-    marginLeft:10,
+    marginLeft: 4,
     marginTop: 5,
-    fontSize: 13,   
+    fontSize: 13,
   },
 
 });
@@ -142,15 +187,20 @@ const styles = StyleSheet.create({
 
 
 const dia = moment().date();
-const mes = moment().month()+1;
+const mes = moment().month() + 1;
 const anio = moment().year();
 
 // Create Document Component
 const FormatoReporte = (props) => {
-
+  let tipo = props.tipoReporte;
+  let finca = props.finca.nombre_finca;
   let validacion = false;
   if (props.datas) validacion = true;
-
+  let desde = props.desde;
+  let hasta = props.hasta;
+  let validationSem = false;
+  if (props.sem) validationSem = true;
+  let suma=0;
 
 
   return (
@@ -164,86 +214,190 @@ const FormatoReporte = (props) => {
           <Text style={styles.fecha}>
             Fecha: {dia}/{mes}/{anio}
           </Text>
-
-          <Text style={styles.title}>Reporte De Plantaciones Por Predio</Text>
-          {validacion &&
+          {tipo === "predio" ? (
             <View>
-              {props.datas.map((dato, i) => {
-                return (
-                  <View style={styles.table}>
+              <Text style={styles.title}>Reporte De Plantaciones Por Predio</Text>
+              {validacion &&
+                <View style={styles.table}>
+                  <View >
 
                     <View style={styles.tableRowTitulo}>
                       <View style={styles.tableColTitulo}>
-
-                        <Text style={styles.tableCellTitulo}>PREDIO: {dato.nombre_finca}</Text>
-                      </View>                     
-                      <View style={styles.tableColTitulo}>
-
-                        <Text style={styles.tableCellTitulo}>RANGO DE SEMANA: 2 - 4</Text>
+                        <Text style={styles.tableCellTitulo}>PREDIO: {finca}</Text>
                       </View>
-                     
                     </View>
+
                     <View style={styles.tableRowSubtittle}>
 
-                      <View style={styles.tableCol}>
+                      <View style={styles.tableColPredio}>
 
-                        <Text style={styles.tableCellSubtittle}>Fecha de plantacion</Text>
+                        <Text style={styles.tableCellSubtittle}>Fecha de registro</Text>
                       </View>
-                      <View style={styles.tableCol}>
 
-                        <Text style={styles.tableCellSubtittle}>Cantidad</Text>
-                      </View>
-                      <View style={styles.tableCol}>
+                      <View style={styles.tableColPredio}>
 
                         <Text style={styles.tableCellSubtittle}>Color de cinta</Text>
                       </View>
-                      <View style={styles.tableCol}>
+                      <View style={styles.tableColPredio}>
                         <Text style={styles.tableCellSubtittle}>Semana de siembra</Text>
                       </View>
-                      <View style={styles.tableCol}>
+                      <View style={styles.tableColPredio}>
+
+                        <Text style={styles.tableCellSubtittle}>Semana de corte</Text>
+                      </View>
+                      <View style={styles.tableColPredio}>
+
+                        <Text style={styles.tableCellSubtittle}>Cantidad</Text>
+                      </View>
+                    </View>
+
+
+                  </View>
+                  <View>
+                    {props.datas.map((dato, i) => {
+                        let numer=parseInt(dato.cantidad);
+                        suma=suma+numer;
+                      return (
+
+                        <View style={styles.tableRow}>
+
+                          <View style={styles.tableColPredio}>
+                            <Text style={styles.tableCell}>{dato.fecha_registro}</Text>
+                          </View>
+
+                          <View style={styles.tableColPredio}>
+
+                            <Text style={styles.tableCell}>{dato.color}</Text>
+                          </View>
+                          <View style={styles.tableColPredio}>
+
+                            <Text style={styles.tableCell}>{dato.numero_semana}</Text>
+                          </View>
+                          <View style={styles.tableColPredio}>
+
+                            <Text style={styles.tableCell}>{
+                              dato.numero_semana + 10 > 52 ? (
+
+                                0 + ((dato.numero_semana) % 10)) : (
+                                  dato.numero_semana + 10
+                                )
+                            }</Text>
+                          </View>
+                          <View style={styles.tableColPredio}>
+                            <Text style={styles.tableCell}>{dato.cantidad} </Text>
+                          </View>
+                        </View>
+
+                      )
+                    })
+                    }
+                    <View style={styles.tableRow}>
+                    <View style={styles.tableColPredioSuma1}>
+
+                      <Text style={styles.tableCell}>Total de plantas</Text>
+                    </View>
+                    <View style={styles.tableColPredioSuma2}>
+
+                      <Text style={styles.tableCell}>{suma}</Text>
+                    </View>
+                    </View>
+
+                  </View>
+
+                </View>
+              }
+            </View>
+
+          ) : tipo === "semana" ? (
+            <View>
+              <Text style={styles.title}>Reporte De Plantaciones Por Semana</Text>
+              {validationSem &&
+                <View style={styles.table}>
+                  <View>
+
+
+                    <View style={styles.tableRowTitulo}>
+
+                      <View style={styles.tableColTitulo}>
+                        <Text style={styles.tableCellTitulo}>RANGO DE SEMANA: {desde} - {hasta}</Text>
+                      </View>
+
+                    </View>
+                    <View style={styles.tableRowSubtittle}>
+                      <View style={styles.tableCol1}>
+
+                        <Text style={styles.tableCellSubtittle}>Predio</Text>
+                      </View>
+
+                      <View style={styles.tableCol2}>
+
+                        <Text style={styles.tableCellSubtittle}>Fecha de registro</Text>
+                      </View>
+                      <View style={styles.tableCol3}>
+
+                        <Text style={styles.tableCellSubtittle}>Cantidad</Text>
+                      </View>
+                      <View style={styles.tableCol4}>
+
+                        <Text style={styles.tableCellSubtittle}>Color de cinta</Text>
+                      </View>
+                      <View style={styles.tableCol5}>
+                        <Text style={styles.tableCellSubtittle}>Semana de siembra</Text>
+                      </View>
+                      <View style={styles.tableCol6}>
 
                         <Text style={styles.tableCellSubtittle}>Semana de corte</Text>
                       </View>
                     </View>
-
-                    <View style={styles.tableRow}>
-
-                      <View style={styles.tableCol}>
-
-                <Text style={styles.tableCell}>{dato.fecha_registro}</Text>
-                      </View>
-                      <View style={styles.tableCol}>
-
-                        <Text style={styles.tableCell}>{dato.cantidad} </Text>
-                      </View>
-                      <View style={styles.tableCol}>
-
-                        <Text style={styles.tableCell}>{dato.color}</Text>
-                      </View>
-                      <View style={styles.tableCol}>
-
-                <Text style={styles.tableCell}>{dato.numero_semana}</Text>
-                      </View>
-                      <View style={styles.tableCol}>
-
-                        <Text style={styles.tableCell}>{
-                         dato.numero_semana+10>52?(
-                         
-                         0+( (dato.numero_semana) % 10)):(
-                            dato.numero_semana+10
-                          )
-                          }</Text>
-                      </View>
-                    </View>
                   </View>
 
-                )
-              })
+                  {props.sem.map((dato, i) => {
+                    return (
+
+
+                      <View style={styles.tableRow}>
+                        <View style={styles.tableCol1}>
+
+                          <Text style={styles.tableCell}>{dato.nombre_finca}</Text>
+                        </View>
+
+                        <View style={styles.tableCol2}>
+
+                          <Text style={styles.tableCell}>{dato.fecha_registro}</Text>
+                        </View>
+                        <View style={styles.tableCol3}>
+
+                          <Text style={styles.tableCell}>{dato.cantidad} </Text>
+                        </View>
+                        <View style={styles.tableCol4}>
+
+                          <Text style={styles.tableCell}>{dato.color}</Text>
+                        </View>
+                        <View style={styles.tableCol5}>
+
+                          <Text style={styles.tableCell}>{dato.numero_semana}</Text>
+                        </View>
+                        <View style={styles.tableCol6}>
+
+                          <Text style={styles.tableCell}>{
+                            dato.numero_semana + 10 > 52 ? (
+
+                              0 + ((dato.numero_semana) % 10)) : (
+                                dato.numero_semana + 10
+                              )
+                          }</Text>
+                        </View>
+                      </View>
+                    )
+                  })
+                  }
+                </View>
               }
             </View>
+          ) :
+              (<Text></Text>)
+
           }
-
-
         </Page>
       </Document>
     </PDFViewer>
