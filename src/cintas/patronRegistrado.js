@@ -1,18 +1,10 @@
 import React, { useState, Fragment} from "react";
-import { CSSTransitionGroup } from "react-transition-group";
 import {
     Row,
     Col,
     Card,
     CardBody,
-    UncontrolledButtonDropdown,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
     Button,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
     Alert,
 } from "reactstrap";
 import Rodal from "rodal";
@@ -21,8 +13,6 @@ import Cintas from "../controllers/cintas";
 import moment from "moment";
 import Axios from "axios";
 import Swal from 'sweetalert2';
-
-
 
 const PatronRegistrado = () => {
 
@@ -82,12 +72,11 @@ const PatronRegistrado = () => {
                     'Registro eliminado!',
                     'Inserte el patrón de cintas nuevamente'
                   )          
-                 window.location = '/menu';
+                 window.location = '/controlcintas/altaCintas';
             });
         }
 
             } else if (
-              /* Read more about handling dismissals below */
               result.dismiss === Swal.DismissReason.cancel
             ) {
               swalWithBootstrapButtons.fire(

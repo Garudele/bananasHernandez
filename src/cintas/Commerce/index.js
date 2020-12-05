@@ -13,12 +13,7 @@ export default class CommerceDashboard extends Component {
       <Fragment>
         <CSSTransitionGroup component="div" transitionName="TabsAnimation" transitionAppear={true}
           transitionAppearTimeout={0} transitionEnter={false} transitionLeave={false}>
-         
-          <Tabs defaultActiveKey="1" renderTabBar={() => <ScrollableInkTabBar />} renderTabContent={() => <TabContent />}>
-            <TabPane tab="Monitoreo" key="1">
-              <CommerceDashboard1 />
-            </TabPane>           
-          </Tabs>
+             <CommerceDashboard1 />
         </CSSTransitionGroup>
       </Fragment>
     );

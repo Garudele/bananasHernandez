@@ -152,19 +152,8 @@ const Preview = ({ cinta }) => {
                         else return(<td key={i} > </td>)
                       })}
                     </React.Fragment>
-                    )
-                    
-                    // cont++;
-                    // let verify=false;
-                    // verify=contenido[cont+8]
-                    // if (verify) {
-                    //   return <td key={i} > {cont} </td>
-                    // }
-                    // else{
-                    //
-                    // }
-                  }
-                  
+                    )  
+                  }                
                   
                 })}
                 {()=>{cont++}}

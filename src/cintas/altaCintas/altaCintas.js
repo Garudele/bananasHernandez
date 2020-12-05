@@ -15,7 +15,6 @@ const steps = [
   { name: "Hecho", component: <Step4 /> },
 ];
 
-
 let anioActual = moment().year();
 
 const AltaCintas = () => {
@@ -28,9 +27,11 @@ const AltaCintas = () => {
       Response.forEach(element => {
         if (element.anio == anioActual) {
           setInicio(true)
-          setRes(true)
+         
         }
+        
       });
+      setRes(true)
     }
   });
 
@@ -44,7 +45,8 @@ const AltaCintas = () => {
             <Col md="12">
               <Card className="main-card mb-3">
                 <CardBody>
-                  <div className="forms-wizard-vertical">
+                 {res===true?(
+                    <div className="forms-wizard-vertical">
                     {inicio ? (
                       <PatronRegistrado />
                     ) : (
@@ -52,6 +54,11 @@ const AltaCintas = () => {
                       )
                     }
                   </div>
+                 ):(
+                   <h1>Cargando...</h1>
+                 )
+
+                 }
                 </CardBody>
               </Card>
             </Col>

@@ -106,15 +106,8 @@ const actualiza =()=>{
         valoresTabla(respuesta.data);
         setSweetEditar(!sweetEditar)
      });
-    }
-
-
-   
-
-   
+    }   
 }
-
-
 
 const alertDelete=(dato)=>{
   const swalWithBootstrapButtons = Swal.mixin({

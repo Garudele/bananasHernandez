@@ -1,41 +1,16 @@
 import { color } from "d3-color";
 import { interpolateRgb } from "d3-interpolate";
 import React, { Fragment, Component } from "react";
-import LiquidFillGauge from "react-liquid-gauge";
 import moment from "moment";
 import {Link} from "react-router-dom";
 import {
   Row,
   Col,
-  Button,
-  Nav,
-  NavItem,
   Card,
   CardBody,
-  CardTitle,
-  NavLink,
   Container,
-  Table,
-  CardHeader,
-  CardFooter,
-  ButtonGroup,
-  Popover,
-  PopoverBody,
-  ListGroupItem,
-  ListGroup,
 } from "reactstrap";
 
-
-import IncomeReport from "./Components/IncomeReport";
-
-import {
-  faAngleUp,
-  faArrowLeft,
-  faArrowRight,
-} from "@fortawesome/free-solid-svg-icons";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import TablaRegistros from "../../tablaRegistros/tablaRegistros"
 import Card2 from "../../Sales/Examples/Card2";
 
 
@@ -67,7 +42,6 @@ function randomData(n = 30) {
   return Array.apply(0, Array(n)).map(boxMullerRandom);
 }
 
-const sampleData = randomData(10);
 
 export default class CommerceDashboard1 extends Component {
   constructor(props) {
@@ -166,7 +140,7 @@ export default class CommerceDashboard1 extends Component {
                 <div className="grid-menu grid-menu-2col">
                   <Row className="no-gutters">
                     <Col sm="6">
-                    <Link style={{textDecoration:"none"}}  to="/altaCintas" >
+                    <Link style={{textDecoration:"none"}}  to="/controlcintas/altaCintas" >
                       <div className="widget-chart widget-chart-hover">
                         <div className="icon-wrapper rounded-circle">
                           <div className="icon-wrapper-bg bg-primary" />
@@ -179,7 +153,7 @@ export default class CommerceDashboard1 extends Component {
                       </Link>
                     </Col>
                     <Col  sm="6">
-                    <Link style={{textDecoration:"none"}}  to="/calendario">
+                    <Link style={{textDecoration:"none"}}  to="/controlcintas/calendario">
                       <div className="widget-chart widget-chart-hover">
                         <div className="icon-wrapper rounded-circle">
                           <div className="icon-wrapper-bg bg-info" />
@@ -192,7 +166,7 @@ export default class CommerceDashboard1 extends Component {
                       </Link>
                     </Col>
                     <Col sm="6">
-                    <Link style={{textDecoration:"none"}}  to="/registroPlantaciones">
+                    <Link style={{textDecoration:"none"}}  to="/controlcintas/registroPlantaciones">
                       <div className="widget-chart widget-chart-hover">
                         <div className="icon-wrapper rounded-circle">
                           <div className="icon-wrapper-bg bg-danger" />
@@ -207,7 +181,7 @@ export default class CommerceDashboard1 extends Component {
                       </Link>
                     </Col>
                     <Col sm="6">
-                    <Link style={{textDecoration:"none"}}  to="/registros">
+                    <Link style={{textDecoration:"none"}}  to="/controlcintas/registros">
                       <div className="widget-chart widget-chart-hover br-br">
                         <div className="icon-wrapper rounded-circle">
                           <div className="icon-wrapper-bg bg-primary" />
@@ -220,7 +194,7 @@ export default class CommerceDashboard1 extends Component {
                       </Link>
                     </Col>
                     <Col sm="6">
-                    <Link style={{textDecoration:"none"}}  to="/monitoreo">
+                    <Link style={{textDecoration:"none"}}  to="/controlcintas/monitoreo">
                       <div className="widget-chart widget-chart-hover br-br">
                         <div className="icon-wrapper rounded-circle">
                           <div className="icon-wrapper-bg bg-info" />
@@ -233,7 +207,7 @@ export default class CommerceDashboard1 extends Component {
                       </Link>
                     </Col>
                     <Col sm="6">
-                    <Link style={{textDecoration:"none"}}  to="/reportes">
+                    <Link style={{textDecoration:"none"}}  to="/controlcintas/reportes">
                       <div className="widget-chart widget-chart-hover br-br">
                         <div className="icon-wrapper rounded-circle">
                           <div className="icon-wrapper-bg bg-danger" />

@@ -2,10 +2,6 @@ import React ,{useState} from 'react'
 import { Button, Col, Row, Table } from "reactstrap"
 import { connect } from 'react-redux'
 import { IoIosPricetags} from "react-icons/io";
-import LaddaButton, {ZOOM_IN,} from "react-ladda";
-
-const x = 7;
-const z = 5;
 
 
 

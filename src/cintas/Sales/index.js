@@ -1,9 +1,4 @@
 import React, { Component, Fragment } from "react";
-import Tabs from "react-responsive-tabs";
-
-
-
-// Examples
 import SalesDashboard1 from "./Examples/Variation1";
 
 

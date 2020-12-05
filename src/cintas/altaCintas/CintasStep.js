@@ -1,25 +1,22 @@
-import React ,{useState} from 'react'
-import { Button, Col, Row, Table } from "reactstrap"
+import React from 'react'
+import {  Col, Row,} from "reactstrap"
 import { connect } from 'react-redux'
 import { IoIosPricetags} from "react-icons/io";
-import LaddaButton, {ZOOM_IN,} from "react-ladda";
 import moment from "moment";
 
-const x = 7;
-const z = 5;
 let anio = moment().year();
 
-
-const CintasStep= ({limpiar, cinta }) =>{
+ 
+const CintasStep= ({cinta }) =>{
  
  return(
   <div >
     <h1 style={{ fontWeight: "bold", textAlign: "center" }} >Patrón de cintas de colores {anio}</h1>
-    <Row  >
-      {cinta.map((cinta, i) => (
-        <Col  md={1} key={cinta.id} className='p-0'>
-
-          {cinta.color === 'Blanca' ? (
+    <Row  >    
+        <Col >
+        {cinta.map((cinta, i) => (
+              <div>
+                  {cinta.color === 'Blanca' ? (
             <div className="font-icon-wrapper font-icon-lg">
 
               <IoIosPricetags key={i} id="sopa" fontSize="40px" color="white" style={{ background: "black", borderRadius: "10%", padding: 5 }} /> <br />
@@ -40,8 +37,11 @@ const CintasStep= ({limpiar, cinta }) =>{
               </div>
             )
           }
-        </Col>
-      ))}     
+              </div>       
+        )
+      
+      )} 
+       </Col>    
     </Row>
    
   </div>
@@ -51,15 +51,5 @@ const mapStateToProps = (state) => ({
   
 })
 
-const mapDispatchToProps = (dispatch) => ({
-
-  limpiar(cintas) {
-    dispatch({
-      type: 'LIMPIAR',
-      cintas
-    })
-  }
-
-
-})
+const mapDispatchToProps = (dispatch) => ({})
 export default connect(mapStateToProps, mapDispatchToProps)(CintasStep)

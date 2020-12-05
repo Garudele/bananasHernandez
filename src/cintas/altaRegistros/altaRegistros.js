@@ -5,7 +5,6 @@ import {
   Card,
   CardBody,
   CardTitle,
-  Button,
   Form,
   FormGroup,
   Label,
@@ -13,14 +12,13 @@ import {
   FormText,
   Container,
   ButtonToggle,
-  Alert,
 } from "reactstrap";
 import Cintas from '../../controllers/cintas';
 import moment from 'moment';
 import Axios from "axios";
 import SweetAlert from "sweetalert-react";
 
-import { faItalic, faNetworkWired } from "@fortawesome/free-solid-svg-icons";
+import {faNetworkWired } from "@fortawesome/free-solid-svg-icons";
 
 const FormGrid = (props) => {
 
@@ -58,7 +56,7 @@ const FormGrid = (props) => {
 
   const [color, setColor] = useState([]);
   const [resColor, setResColor] = useState(false);
-  
+
   Cintas.getDataColor().then((Response) => {
     if (!resColor) {
       setResColor(true)
@@ -136,6 +134,8 @@ const FormGrid = (props) => {
         setSweetInsert(!sweetInsert);
       })
     )
+
+    window.location = '/controlcintas/registroPlantaciones';
   };
 
   return (
@@ -148,161 +148,171 @@ const FormGrid = (props) => {
         transitionEnter={false}
         transitionLeave={false}
       >
-        {editar === true ? (
-          <Container fluid>
-            <Card className="main-card mb-3">
-              <CardBody>
-                <CardTitle>Registro de plantaciones</CardTitle>
-                <Form>
-                  <FormGroup row>
-                    <Label for="exampleSelect" sm={2}>
-                      Finca
+        <div>
+          {res === true && resColor ===true ?(
+            <div>
+            {editar === true ? (
+              <Container fluid>
+                <Card className="main-card mb-3">
+                  <CardBody>
+                    <CardTitle>Registro de plantaciones</CardTitle>
+                    <Form>
+                      <FormGroup row>
+                        <Label for="exampleSelect" sm={2}>
+                          Finca
                   </Label>
-                    <Col sm={4}>
+                        <Col sm={4}>
 
-                      <Input type="select" name="nombre_finca" id="exampleSelect" onChange={handleChangeEditar} >
+                          <Input type="select" name="nombre_finca" id="exampleSelect" onChange={handleChangeEditar} >
 
-                        {data.map((dato, i) => {
-                          if (dato.nombre_finca === registro.nombre_finca) {
+                            {data.map((dato, i) => {
+                              if (dato.nombre_finca === registro.nombre_finca) {
 
-                            return (<option selected key={i} value={dato.nombre_finca}  >{dato.nombre_finca}</option>);
-                          }
-                          else {
-                            return (<option key={i} value={dato.nombre_finca}  >{dato.nombre_finca}</option>);
-                          }
+                                return (<option selected key={i} value={dato.nombre_finca}  >{dato.nombre_finca}</option>);
+                              }
+                              else {
+                                return (<option key={i} value={dato.nombre_finca}  >{dato.nombre_finca}</option>);
+                              }
 
-                        })
+                            })
 
-                        }
+                            }
 
-                      </Input>
-                    </Col>
-                    <Label for="examplePassword" sm={2}>
-                      Numero de semana
+                          </Input>
+                        </Col>
+                        <Label for="examplePassword" sm={2}>
+                          Numero de semana
                   </Label>
-                    <Col sm={2}>
-                      <div style={{ fontFamily: faNetworkWired, color: 'blue', fontSize: 28 }}>
-                        {registro.numero_semana}
-                      </div>
-                    </Col>
-                  </FormGroup>
-                  <hr></hr>
-                  <CardTitle>Plantación de bananos</CardTitle>
-                  <FormGroup row>
+                        <Col sm={2}>
+                          <div style={{ fontFamily: faNetworkWired, color: 'blue', fontSize: 28 }}>
+                            {registro.numero_semana}
+                          </div>
+                        </Col>
+                      </FormGroup>
+                      <hr></hr>
+                      <CardTitle>Plantación de bananos</CardTitle>
+                      <FormGroup row>
 
-                    <Label for="examplePassword" sm={2}>
-                      Cantidad
+                        <Label for="examplePassword" sm={2}>
+                          Cantidad
                     </Label>
-                    <Col sm={3}>
-                      <Input onChange={handleChangeEditar} type="number" name="cantidad" placeholder={registro.cantidad} />
-                    </Col>
+                        <Col sm={3}>
+                          <Input onChange={handleChangeEditar} type="number" name="cantidad" placeholder={registro.cantidad} />
+                        </Col>
 
-                    <Label for="examplePassword" sm={3}>
-                      Color de cinta correspondiente
+                        <Label for="examplePassword" sm={3}>
+                          Color de cinta correspondiente
                   </Label>
 
-                    <Col sm={2}>
+                        <Col sm={2}>
 
-                      <Input
-                        disabled
-                        style={{ background: registro.codigo }}
-                        type="text"
-                        value={registro.color}
-                      />
-                    </Col>
-                  </FormGroup>
-                </Form>
-              </CardBody>
-            </Card>
-          </Container>
-        ) : (
-            <Container fluid>
-              <Card className="main-card mb-3">
-                <CardBody>
-                  <CardTitle>Registro de plantaciones</CardTitle>
-                  <Form>
-                    <FormGroup row>
-                      <Label for="exampleSelect" sm={2}>
-                        Finca
+                          <Input
+                            disabled
+                            style={{ background: registro.codigo }}
+                            type="text"
+                            value={registro.color}
+                          />
+                        </Col>
+                      </FormGroup>
+                    </Form>
+                  </CardBody>
+                </Card>
+              </Container>
+            ) : (
+                <Container fluid>
+                  <Card className="main-card mb-3">
+                    <CardBody>
+                      <CardTitle>Registro de plantaciones</CardTitle>
+                      <Form>
+                        <FormGroup row>
+                          <Label for="exampleSelect" sm={2}>
+                            Finca
                   </Label>
-                      <Col sm={4}>
-                        <Input type="select" name="nombre_finca" id="exampleSelect" onChange={handleChange} >
-                          <option >Elige un predio</option>
-                          {data.map((dato, i) => {
+                          <Col sm={4}>
+                            <Input type="select" name="nombre_finca" id="exampleSelect" onChange={handleChange} >
+                              <option >Elige un predio</option>
+                              {data.map((dato, i) => {
 
-                            return (<option key={i} value={dato.nombre_finca}  >{dato.nombre_finca}</option>);
-                          })
+                                return (<option key={i} value={dato.nombre_finca}  >{dato.nombre_finca}</option>);
+                              })
 
-                          }
+                              }
 
-                        </Input>
-                      </Col>
-                      <Label for="examplePassword" sm={2}>
-                        Numero de semana
+                            </Input>
+                          </Col>
+                          <Label for="examplePassword" sm={2}>
+                            Numero de semana
                   </Label>
-                      <Col sm={2}>
-                        <div style={{ fontFamily: faNetworkWired, color: 'blue', fontSize: 28 }}>
-                          {num}
-                        </div>
-                        {/* <Input
+                          <Col sm={2}>
+                            <div style={{ fontFamily: faNetworkWired, color: 'blue', fontSize: 28 }}>
+                              {num}
+                            </div>
+                            {/* <Input
                       disabled
                       type="password"
                       name="password"
                       id="examplePassword"
                       placeholder={num}
                     /> */}
-                      </Col>
-                    </FormGroup>
-                    <hr></hr>
+                          </Col>
+                        </FormGroup>
+                        <hr></hr>
 
-                    <CardTitle>Plantación de bananos</CardTitle>
-                    <FormGroup row>
+                        <CardTitle>Plantación de bananos</CardTitle>
+                        <FormGroup row>
 
-                      <Label for="examplePassword" sm={2}>
-                        Cantidad
+                          <Label for="examplePassword" sm={2}>
+                            Cantidad
                     </Label>
-                      <Col sm={3}>
-                        <Input onChange={handleChange} type="number" name="cantidad" id="examplePassword" placeholder="Inserte la cantidad" />
-                      </Col>
+                          <Col sm={3}>
+                            <Input onChange={handleChange} type="number" name="cantidad" id="examplePassword" placeholder="Inserte la cantidad" />
+                          </Col>
 
-                      <Label for="examplePassword" sm={3}>
-                        Color de cinta correspondiente
+                          <Label for="examplePassword" sm={3}>
+                            Color de cinta correspondiente
                   </Label>
 
-                      <Col sm={2}>
+                          <Col sm={2}>
 
-                        <Input
-                          disabled
-                          style={{ background: codigo }}
-                          type="text"
-                          value={colorcinta}
-                        />
-                      </Col>
-                    </FormGroup>
-                    <FormGroup check row>
-                      <Col sm={{ size: 14, offset: 10 }}>
-                        <ButtonToggle color="info" onClick={insertar} >Guardar</ButtonToggle>
-                        <ButtonToggle onClick={()=>{setSweetRes(!sweetRes);window.location = '/menu';}} className="ml-3" color="danger">
-                          Salir
+                            <Input
+                              disabled
+                              style={{ background: codigo }}
+                              type="text"
+                              value={colorcinta}
+                            />
+                          </Col>
+                        </FormGroup>
+                        <FormGroup check row>
+                          <Col sm={{ size: 14, offset: 10 }}>
+                            <ButtonToggle color="info" onClick={insertar} >Guardar</ButtonToggle>
+                            <ButtonToggle onClick={() => { setSweetRes(!sweetRes); window.location = '/menu'; }} className="ml-3" color="danger">
+                              Salir
                     </ButtonToggle>
 
-                        <SweetAlert title="Seleccione un predio para continuar" confirmButtonColor="" show={sweet}
-                          text="" type="error" onConfirm={() => { setSweet(!sweet) }} />
-                        <SweetAlert title="Inserte una cantidad para continuar" confirmButtonColor="" show={sweetNum}
-                          text="" type="error" onConfirm={() => { setSweetNum(!sweetNum) }} />
-                        <SweetAlert title="Registro agregado correctamente" confirmButtonColor="" show={sweetInsert}
-                          text="" type="success" onConfirm={() => { setSweetInsert(!sweetInsert) }} />
-                          <SweetAlert title="No se guardo ningún registro" confirmButtonColor="" show={sweetRes}
-                          text="" type="error" onConfirm={() => { setSweetRes(!sweetRes) }} />
-                      </Col>
-                    </FormGroup>
-                  </Form>
-                </CardBody>
-              </Card>
-            </Container>
+                            <SweetAlert title="Seleccione un predio para continuar" confirmButtonColor="" show={sweet}
+                              text="" type="error" onConfirm={() => { setSweet(!sweet) }} />
+                            <SweetAlert title="Inserte una cantidad para continuar" confirmButtonColor="" show={sweetNum}
+                              text="" type="error" onConfirm={() => { setSweetNum(!sweetNum) }} />
+                            <SweetAlert title="Registro agregado correctamente" confirmButtonColor="" show={sweetInsert}
+                              text="" type="success" onConfirm={() => { setSweetInsert(!sweetInsert) }} />
+                            <SweetAlert title="No se guardo ningún registro" confirmButtonColor="" show={sweetRes}
+                              text="" type="error" onConfirm={() => { setSweetRes(!sweetRes) }} />
+                          </Col>
+                        </FormGroup>
+                      </Form>
+                    </CardBody>
+                  </Card>
+                </Container>
+              )
+
+            }
+          </div>
+          ):(
+            <h1>Cargando...</h1>
           )
 
-        }
+       }
+        </div>
       </CSSTransitionGroup>
     </Fragment>
   );

@@ -5,9 +5,7 @@ import Axios from "axios";
 import SweetAlert from "sweetalert-react";
 import CintasStep from "../CintasStep";
 
-const WizardStep4 = ({cinta, limpiar}) => {
-
-  
+const WizardStep4 = ({cinta, limpiar}) => {  
   let semanas=[];
 
   if(cinta.length==10){
@@ -17,7 +15,6 @@ const WizardStep4 = ({cinta, limpiar}) => {
         if(contador==10) contador=0;
         semanas[x]= cinta[contador++];
     }
-
   }
   
   const [sweet,setSweet]=useState(false);
@@ -25,7 +22,7 @@ const WizardStep4 = ({cinta, limpiar}) => {
   const [sweetSalir,setSweetSalir]= useState(false);
   const  insertar = () =>{
 
-    const baseUrl = "http://bananashernandez.com/controlcintas/APICintas/"; 
+    const baseUrl = "http://localhost/BananasHernandez/cintas/semanaCinta.php"; 
     let f= new FormData();
       let semanasn= JSON.stringify(semanas)      
       f.append('semanas', semanasn); 
@@ -38,11 +35,9 @@ const WizardStep4 = ({cinta, limpiar}) => {
       else{
         Axios.post(baseUrl,f).then((respuesta)=>{
           setSweet(!sweet)
-          window.location = '/altaCintas';
+          window.location = '/controlcintas/altaCintas';
     })    
-      }
-
-     
+      }     
   
   };
 

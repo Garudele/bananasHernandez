@@ -12,9 +12,7 @@ const WizardStep1 =({orden})=>{
                 {orden.length ===10  ? (
                  <CintasOrdenadas/>
                 ):(<Cintas/>)
-
-                }     
-     
+                }          
       </div>
     </Fragment>
   );

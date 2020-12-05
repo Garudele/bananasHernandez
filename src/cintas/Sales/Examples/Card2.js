@@ -28,6 +28,9 @@ const Card2 = (props) => {
   })
 
   return (<Card className="mb-3">
+    {resRegistro===true ? (
+      <div>
+        
     <CardHeader className="card-header-tab">
       <div className="card-header-title font-size-lg text-capitalize font-weight-normal">
         <IoIosCut fontSize="50px" color="green" />
@@ -41,9 +44,8 @@ const Card2 = (props) => {
     {registro.id ? (
           <span>Plantaciones realizadas en la semana {num - 11} listas para corte</span>
         ):(
-          <span>err</span>
+          <span></span>
         )
-
         }
       <div className="scroll-area-md shadow-overflow">
         <PerfectScrollbar>
@@ -101,6 +103,12 @@ const Card2 = (props) => {
         </PerfectScrollbar>
       </div>
     </CardBody>
+      </div>
+    ):(
+      <h1>Cargado...</h1>
+    )
+
+    }
   </Card>
   )
 }

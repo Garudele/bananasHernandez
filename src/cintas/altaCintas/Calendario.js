@@ -87,16 +87,18 @@ const Preview = ({ cinta }) => {
       Response.forEach((element) => {
         if (element.anio == anioActual) {
           format(Response, setData, setContenido);
-          setRes(true);
+         
         }
       });
+      setRes(true);
     }
   });
 
   return (
     <Container fluid>
       <Row>
-        <Col>
+        {res===true ? (
+          <Col>
           <Card className="main-card mb-3">
             <CardTitle className="text-center mt-3 mb-0">
               <h1>Calendario {anioActual}</h1>
@@ -218,6 +220,11 @@ const Preview = ({ cinta }) => {
             </CardBody>
           </Card>
         </Col>
+        ):(
+          <h1>Cargando...</h1>
+        )
+        }
+        
       </Row>
     </Container>
   );

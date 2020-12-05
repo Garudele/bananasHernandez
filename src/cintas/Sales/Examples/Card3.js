@@ -1,6 +1,5 @@
 import React, {useState } from "react";
 import {IoIosCut } from "react-icons/io";
-
 import {
   CardHeader,
   Card,
@@ -29,6 +28,9 @@ const Card3 = () => {
 
   return (
     <Card className="mb-3">
+      {resRegistro===true ? (
+        <div>
+          
       <CardHeader className="card-header-tab">
         <div className="card-header-title font-size-lg text-capitalize font-weight-normal">
           <IoIosCut fontSize="50px" color="blue" />
@@ -99,6 +101,12 @@ const Card3 = () => {
           </PerfectScrollbar>
         </div>
       </CardBody>
+        </div>
+      ):(
+        <h1>Cargando...</h1>
+      )
+
+      }
     </Card>
   )
 }

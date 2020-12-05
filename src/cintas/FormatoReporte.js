@@ -3,7 +3,6 @@ import { Page, Text, View, Document, StyleSheet, PDFViewer, Image } from '@react
 import moment from "moment";
 import encabezado from "../assets/images/encabezado2.png";
 
-
 const styles = StyleSheet.create({
   body: {
     paddingTop: 35,

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Row, Col, Card, Container } from "reactstrap";
+import { Button,Col,Container } from "reactstrap";
 
 const getNavStates = (indx, length) => {
   let styles = [];
