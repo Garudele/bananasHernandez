@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from "reactstrap";
 import { IoIosPricetags } from "react-icons/io";

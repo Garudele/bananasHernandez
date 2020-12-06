@@ -1,7 +1,6 @@
 
 import React, { Fragment } from "react";
 import { Route } from "react-router-dom";
-
 // Inicio
 import Menu from "./Commerce";
 import AltaCintas from "./altaCintas/altaCintas";

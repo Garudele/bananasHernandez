@@ -54,7 +54,7 @@ const format = (cinta, setData, setContenido) => {
     let aumento = i + 10;
 
     for (let j = 1; j <= 21; j++) {
-      if (j == 1) {
+      if (j === 1) {
         filas[j] = i;
       } else if (j > 1 && j < 7) {
         if (aumento <= 52) {
@@ -63,7 +63,7 @@ const format = (cinta, setData, setContenido) => {
         } else {
           filas[j] = "";
         }
-      } else if (j == 7) {
+      } else if (j === 7) {
         filas[j] = contenido[i + 9];
       } else {
         filas[j] = {};
@@ -85,7 +85,7 @@ const Preview = ({ cinta }) => {
   Cintas.getDataColor().then((Response) => {
     if (!res) {
       Response.forEach((element) => {
-        if (element.anio == anioActual) {
+        if (element.anio === anioActual) {
           format(Response, setData, setContenido);
          
         }
@@ -165,7 +165,7 @@ const Preview = ({ cinta }) => {
                           if (i < 7) {
                             return <td key={i}>{JSON.stringify(campo)}</td>;
                            
-                          } else if (i == 7) {
+                          } else if (i === 7) {
                             if (campo) {
                               return (
                                 <td
@@ -179,14 +179,14 @@ const Preview = ({ cinta }) => {
                                 </td>
                               );
                             } else return <td key={i}></td>;
-                          } else if (i == 8) {
+                          } else if (i === 8) {
                             let arrayColors = [];
 
                             for (let x = cont; x < 14; x++) {
                               arrayColors[x] = contenido[cont2 + contPrueba];
 
                               if (cont >= 10) cont = 0;
-                              if (cont2 == 0) cont2 = 10;
+                              if (cont2 === 0) cont2 = 10;
                               cont++;
                               cont2--;
                             }

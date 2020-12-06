@@ -7,7 +7,6 @@ import {
     Button,
     Alert,
 } from "reactstrap";
-import Rodal from "rodal";
 import SweetAlert from "sweetalert-react";
 import Cintas from "../controllers/cintas";
 import moment from "moment";
@@ -25,7 +24,7 @@ const PatronRegistrado = () => {
 
         if (!res) {
             Response.forEach(element => {
-              if (element.anio == anioActual) {
+              if (element.anio === anioActual) {
                 setConsulta(true)
                 setRes(true)
               }

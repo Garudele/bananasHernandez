@@ -1,4 +1,3 @@
-import { color } from "d3-color";
 import { interpolateRgb } from "d3-interpolate";
 import React, { Fragment, Component } from "react";
 import moment from "moment";
@@ -14,33 +13,9 @@ import {
 import Card2 from "../../Sales/Examples/Card2";
 
 
-function boxMullerRandom() {
-  let phase = true,
-    x1,
-    x2,
-    w;
 
-   
 
-  return (function () {
-    if (phase) {
-      do {
-        x1 = 2.0 * Math.random() - 1.0;
-        x2 = 2.0 * Math.random() - 1.0;
-        w = x1 * x1 + x2 * x2;
-      } while (w >= 1.0);
 
-      w = Math.sqrt((-2.0 * Math.log(w)) / w);
-      return x1 * w;
-    } else {
-      return x2 * w;
-    }
-  })();
-}
-
-function randomData(n = 30) {
-  return Array.apply(0, Array(n)).map(boxMullerRandom);
-}
 
 
 export default class CommerceDashboard1 extends Component {
@@ -100,29 +75,10 @@ export default class CommerceDashboard1 extends Component {
   endColor = "#dc143c"; // crimson
 
   render() {
-    const radius = 107;
+  
     const interpolate = interpolateRgb(this.startColor, this.endColor);
-    const fillColor = interpolate(this.state.value / 100);
-    const gradientStops = [
-      {
-        key: "0%",
-        stopColor: color(fillColor).darker(0.5).toString(),
-        stopOpacity: 1,
-        offset: "0%",
-      },
-      {
-        key: "50%",
-        stopColor: fillColor,
-        stopOpacity: 0.75,
-        offset: "50%",
-      },
-      {
-        key: "100%",
-        stopColor: color(fillColor).brighter(0.5).toString(),
-        stopOpacity: 0.5,
-        offset: "100%",
-      },
-    ];
+  
+    
     let anio = moment().year();
     return (
       <Fragment>

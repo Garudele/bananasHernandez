@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Alert, Button } from "reactstrap";
+import { Button } from "reactstrap";
 import {connect} from "react-redux";
 import Axios from "axios";
 import SweetAlert from "sweetalert-react";
@@ -8,11 +8,11 @@ import CintasStep from "../CintasStep";
 const WizardStep4 = ({cinta, limpiar}) => {  
   let semanas=[];
 
-  if(cinta.length==10){
+  if(cinta.length===10){
     let contador=0;
     
     for(let x=0;x<52;x++){
-        if(contador==10) contador=0;
+        if(contador===10) contador=0;
         semanas[x]= cinta[contador++];
     }
   }

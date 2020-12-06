@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Col, Row, Table } from "reactstrap"
+import {  Col, Row, Table } from "reactstrap"
 import { connect } from 'react-redux'
 import moment from "moment";
 
@@ -26,7 +26,7 @@ const Preview = ({ cinta }) => {
     for (let j = 1; j <= 21; j++) {
 
 
-      if (j == 1) {
+      if (j === 1) {
         filas[j] = i
 
       } 
@@ -39,7 +39,7 @@ const Preview = ({ cinta }) => {
           filas[j] = ''
         }
       }
-       else if (j == 7) {
+       else if (j === 7) {
         filas[j] = contenido[i + 9]
       }
       else {
@@ -123,7 +123,7 @@ const Preview = ({ cinta }) => {
                   
                   if (i < 7) {
                     return <td key={i}>{JSON.stringify(campo)}</td>
-                  } else if (i == 7) {
+                  } else if (i === 7) {
                     if (campo) {
                     return <td key={i} style={{ background: campo.codigo }}>
                       {campo.color==="Amarilla" ? (<spam style={{ fontWeight: "bold", color:"black"}}>{campo.color }</spam>)
@@ -132,7 +132,7 @@ const Preview = ({ cinta }) => {
                       }                      
                     </td>
                     } else return <td key={i}></td>
-                  } else if(i==8){
+                  } else if(i===8){
                     let arrayColors=[];
 
                     for(let x=cont;x<14;x++){
@@ -140,7 +140,7 @@ const Preview = ({ cinta }) => {
                       arrayColors[x]=contenido[cont2+contPrueba];
                       
                       if(cont>=10) cont=0;  
-                      if(cont2==0) cont2=10;
+                      if(cont2===0) cont2=10;
                       cont++;
                       cont2--;
                     }

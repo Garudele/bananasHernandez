@@ -9,7 +9,6 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText,
   Container,
   ButtonToggle,
 } from "reactstrap";
@@ -38,7 +37,6 @@ const FormGrid = (props) => {
   );
 
   let setDatosNuevos = props.setDatosNuevos;
-  let datosNuevos = props.datosNuevos;
 
   useEffect(() => {
     if (props.editar) {
@@ -71,7 +69,7 @@ const FormGrid = (props) => {
   let codigo = "";
 
   color.forEach(cod => {
-    if (cod.semana == num) {
+    if (cod.semana === num) {
       codigo = cod.codigo;
       colorcinta = cod.color;
     }

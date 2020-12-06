@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Page, Text, View, Document, StyleSheet, PDFViewer, Image } from '@react-pdf/renderer';
 import moment from "moment";
 import encabezado from "../assets/images/encabezado2.png";

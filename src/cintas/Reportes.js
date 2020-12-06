@@ -11,13 +11,11 @@ import {
   Label,
   Input,
   Container,
-  CardFooter,
   Row
 } from "reactstrap";
 import FormatoReporte from "./FormatoReporte";
 import SweetAlert from "sweetalert-react";
 import Cintas from "../controllers/cintas"
-import { map } from "jquery";
 
 
 const Reportes = () => {
@@ -26,15 +24,10 @@ const Reportes = () => {
   const [reporte, setReporte] = useState(false);
   const [sweet, setSweet] = useState(false);
   const [sweetNum, setSweetNum] = useState(false);
+  const [sweetPredio, setSweetPredio] = useState(false);
   const [tipoReporte, setTipoReporte] = useState("");
   const [desde, setDesde] = useState(0);
   const [hasta, setHasta] = useState(0);
-
-
-
-
-
-
   const [valores, setValores] = useState({ datas: [] });
   const [fincas, setFincas] = useState({ datas: [] });
   const [res, setRes] = useState(false);
@@ -49,10 +42,6 @@ const Reportes = () => {
       setValores(respuesta);
 
     }
-
-
-
-
   });
 
   Cintas.getDataFinca().then((respuesta) => {
@@ -96,41 +85,40 @@ const Reportes = () => {
         semanas[i] = registro;
       }
 
-    });
+    });  
+    
+    if(!tipoReporte){
+      setSweet(!sweet)
+    }
+    else{
+      
+        if(tipoReporte==="predio"){
+            if(fincaSeleccionada.nombre_finca===""){
+              setSweetPredio(!sweetPredio)
+            }
+            else{
+              setReporte(!reporte);
+            }
+        }
+        else {
+          if(!desde || !hasta){
+            setSweetNum(!sweetNum)
+          }
+          else{
+            setReporte(!reporte);
+          }
+        }
+
+    
+     
+  }
+
    
 
-  
-
-  // semanas.map((semanai,i)=>{
-  //     if(i< (semanas.length-1)){
-  //         semanas.map((semanasj,j)=>{
-  //               j=i+1;
-  //             if(j<(semanas.length)){
-  //                 if(semanas[i].compareToIgnoreCase(semanas[j])>0){
-  //                   let variableauxiliar=semanas[i];
-  //                   semanas[i]= semanas[j];
-  //                   semanas[j]=variableauxiliar;
-  //                   console.log(semanas);
-  //                 }
-  //             }
-  //         })
-  //     }
-  // })
-
   setDatosSemanas(semanas);
-  setReporte(!reporte);
+
 
   };
-
-//   let var1="Hello";
-//   let var2="HELLO";
-  
-//  let s= var1.compareToIgnoreCase(var2);
-//  console.log(s);
-
-
-
-
   return (
     <Fragment>
       <CSSTransitionGroup component="div" transitionName="TabsAnimation" transitionAppear={true}
@@ -205,29 +193,42 @@ const Reportes = () => {
                   <FormGroup row>
 
                     <Col >
-                      <SweetAlert title="Seleccione tipo de reporte para continuar" confirmButtonColor="" show={sweet}
+                      <SweetAlert title="Selecciona tipo de reporte para continuar" confirmButtonColor="" show={sweet}
                         text="" type="error" onConfirm={() => { setSweet(!sweet) }} />
-                      <SweetAlert title="Inserte el rango de fecha para continuar" confirmButtonColor="" show={sweetNum}
+                      <SweetAlert title="Inserta el rango de fecha para continuar" confirmButtonColor="" show={sweetNum}
                         text="" type="error" onConfirm={() => { setSweetNum(!sweetNum) }} />
+                         <SweetAlert title="Selecciona un predio para continuar" confirmButtonColor="" show={sweetPredio}
+                        text="" type="error" onConfirm={() => { setSweetPredio(!sweetPredio) }} />
                     </Col>
 
-                    <Col style={{ marginTop: 10 }} sm={12}>
-                      {reporte && (<FormatoReporte datas={seleccion} tipoReporte={tipoReporte} finca={fincaSeleccionada} sem={datosSemanas} desde={desde} hasta={hasta} />)
-
-                      }
-                    </Col>
+                   
                   </FormGroup>
                 </Form>
               </CardBody>
               <div style={{ marginTop: -40 }} className="divider" />
 
               <Row className="text-right pr-5 pb-3">
-                <Col>
+                <Col>{reporte ? (
+                   <Button onClick={abrirReporte} className="btn-icon btn-dashed" color="primary">
+                   <i className="lnr-eye btn-icon-wrapper"> </i>
+                        Cerrar reporte
+                    </Button>
+                ):(
                   <Button onClick={abrirReporte} className="btn-icon btn-dashed" color="primary">
-                    <i className="lnr-eye btn-icon-wrapper"> </i>
-                         Visualizar reporte
-                     </Button>
+                  <i className="lnr-eye btn-icon-wrapper"> </i>
+                       Visualizar reporte
+                   </Button>
+                )
+
+                }
+                 
                 </Col>
+
+                <Col style={{ marginTop: 10 }} sm={12}>
+                      {reporte && (<FormatoReporte datas={seleccion} tipoReporte={tipoReporte} finca={fincaSeleccionada} sem={datosSemanas} desde={desde} hasta={hasta} />)
+
+                      }
+                    </Col>
               </Row>
 
             </Card>

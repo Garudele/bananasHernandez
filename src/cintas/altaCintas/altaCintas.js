@@ -25,11 +25,9 @@ const AltaCintas = () => {
   Cintas.getDataColor().then((Response) => {
     if (!res) {
       Response.forEach(element => {
-        if (element.anio == anioActual) {
-          setInicio(true)
-         
-        }
-        
+        if (element.anio === anioActual) {
+          setInicio(true)         
+        }        
       });
       setRes(true)
     }

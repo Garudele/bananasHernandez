@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState} from "react";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import {
   Row,
@@ -25,7 +25,6 @@ import Swal from 'sweetalert2';
 const GridTables = (props) => {
 
 const [sweetEditar, setSweetEditar] = useState(false);
-const [sweetConfirmar, setSweetConfirmar] = useState(false);
 const [sweetCantidad, setSweetCantidad] = useState(false);
 
 const [res,setRes]=useState(false);
