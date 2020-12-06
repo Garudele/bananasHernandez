@@ -88,7 +88,7 @@ const [datosNuevos,setDatosNuevos] =useState({
 });
 
 const actualiza =()=>{
-  const baseUrl = "http://localhost/BananasHernandez/cintas/plantaciones.php"; 
+  const baseUrl = "http://bananashernandez.com/controlcintas/APICintas/plantaciones.php"; 
     let f= new FormData();
 
     f.append("id", registroSeleccionado.id);
