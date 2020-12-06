@@ -85,7 +85,7 @@ const Preview = ({ cinta }) => {
   Cintas.getDataColor().then((Response) => {
     if (!res) {
       Response.forEach((element) => {
-        if (element.anio === anioActual) {
+        if (parseInt(element.anio) === anioActual) {
           format(Response, setData, setContenido);
          
         }

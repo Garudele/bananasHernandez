@@ -47,6 +47,7 @@ const FormGrid = (props) => {
 
   Cintas.getDataFinca().then((respuesta) => {
     if (!res) {
+      
       setRes(true)
       setData(respuesta)
     }
@@ -69,7 +70,7 @@ const FormGrid = (props) => {
   let codigo = "";
 
   color.forEach(cod => {
-    if (cod.semana === num) {
+    if (parseInt(cod.semana) === num) {
       codigo = cod.codigo;
       colorcinta = cod.color;
     }
@@ -107,7 +108,7 @@ const FormGrid = (props) => {
   const insertar = () => {
 
 
-    const baseUrl = "http://localhost/BananasHernandez/cintas/plantaciones.php";
+    const baseUrl = "http://bananashernandez.com/controlcintas/APICintas/plantaciones.php";
     let f = new FormData();
 
     let cantidad = fincaSeleccionada.cantidad;

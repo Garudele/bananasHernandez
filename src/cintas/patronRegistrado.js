@@ -55,7 +55,7 @@ const PatronRegistrado = () => {
             if (result.isConfirmed) {
 
                             
-        const baseUrl = "http://localhost/BananasHernandez/cintas/semanaCinta.php"; 
+        const baseUrl = "http://bananashernandez.com/controlcintas/APICintas/semanaCinta.php"; 
         let f= new FormData();
         f.append("anio", anioActual);
         f.append("METHOD","ELIMINAR_PATRON")  

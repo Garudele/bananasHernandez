@@ -128,7 +128,7 @@ const alertDelete=(dato)=>{
 
     }).then((result) => {
       if (result.isConfirmed) {
-        const baseUrl = "http://localhost/BananasHernandez/cintas/plantaciones.php"; 
+        const baseUrl = "http://bananashernandez.com/controlcintas/APICintas/plantaciones.php"; 
         let f= new FormData();
         f.append("id", dato.id);
         f.append("METHOD","ELIMINAR")  

@@ -1,13 +1,13 @@
 {
-  "name": "architectui-react-pro",
+  "name": "ControlCintas",
   "version": "1.6.1",
   "private": true,
-  "description": "ArchitectUI - Bootstrap 4 Premium Admin Dashboard Template",
-  "author": "DashboardPack.com",
+  "description": "Bananas Hernandez",
+  "author": "Gaes Solutions",
   "homepage": ".",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dpackdev/architectui-react-pro"
+    "url": "git+https://github.com/Garudele/bananasHernandez"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",

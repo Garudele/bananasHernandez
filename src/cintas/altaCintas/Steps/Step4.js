@@ -22,7 +22,7 @@ const WizardStep4 = ({cinta, limpiar}) => {
   const [sweetSalir,setSweetSalir]= useState(false);
   const  insertar = () =>{
 
-    const baseUrl = "http://localhost/BananasHernandez/cintas/semanaCinta.php"; 
+    const baseUrl = "http://bananashernandez.com/controlcintas/APICintas/semanaCinta.php"; 
     let f= new FormData();
       let semanasn= JSON.stringify(semanas)      
       f.append('semanas', semanasn); 
